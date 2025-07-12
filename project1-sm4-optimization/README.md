@@ -8,14 +8,14 @@
 
 ```
 sm4-optimization/
-├── src/                 # 源代码目录
-│   ├── basic/          # 基础实现
-│   ├── ttable/         # T表优化实现
-│   ├── simd/           # SIMD指令优化实现
-│   └── common/         # 公共模块
-├── tests/              # 测试代码
-├── benchmarks/         # 性能测试
-├── docs/               # 文档
+├── src/ # 源代码目录
+│ ├── basic/ # 基础实现
+│ ├── ttable/ # T表优化实现
+│ ├── simd/ # SIMD指令优化实现
+│ └── common/ # 公共模块
+├── tests/ # 测试代码
+├── benchmarks/ # 性能测试
+├── docs/ # 文档
 └── README.md
 ```
 

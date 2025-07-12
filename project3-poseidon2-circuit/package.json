@@ -1,42 +1,42 @@
 {
-  "name": "poseidon2-circuit",
-  "version": "1.0.0",
-  "description": "Poseidon2 Hash Function Circuit Implementation using Circom",
-  "main": "index.js",
-  "scripts": {
-    "compile": "node scripts/compile.js",
-    "setup": "node scripts/setup.js", 
-    "prove": "node scripts/prove.js",
-    "verify": "node scripts/verify.js",
-    "export": "node scripts/export.js",
-    "test": "node scripts/test.js",
-    "test-unit": "npx mocha tests/poseidon2.test.js --reporter spec",
-    "analyze": "node scripts/analyze.js",
-    "benchmark": "node scripts/benchmark.js",
-    "demo": "node scripts/demo.js",
-    "clean": "rimraf build setup/ptau setup/zkey proofs"
-  },
-  "keywords": [
-    "circom",
-    "zero-knowledge",
-    "poseidon2",
-    "hash-function",
-    "groth16",
-    "zk-snark"
-  ],
-  "author": "CyberSec Project",
-  "license": "MIT",
-  "dependencies": {
-    "circomlib": "^2.0.5",
-    "snarkjs": "^0.7.3",
-    "ffjavascript": "^0.2.60"
-  },
-  "devDependencies": {
-    "rimraf": "^5.0.5",
-    "chai": "^4.3.10",
-    "mocha": "^10.2.0"
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  }
+ "name": "poseidon2-circuit",
+ "version": "1.0.0",
+ "description": "Poseidon2 Hash Function Circuit Implementation using Circom",
+ "main": "index.js",
+ "scripts": {
+ "compile": "node scripts/compile.js",
+ "setup": "node scripts/setup.js",
+ "prove": "node scripts/prove.js",
+ "verify": "node scripts/verify.js",
+ "export": "node scripts/export.js",
+ "test": "node scripts/test.js",
+ "test-unit": "npx mocha tests/poseidon2.test.js --reporter spec",
+ "analyze": "node scripts/analyze.js",
+ "benchmark": "node scripts/benchmark.js",
+ "demo": "node scripts/demo.js",
+ "clean": "rimraf build setup/ptau setup/zkey proofs"
+ },
+ "keywords": [
+ "circom",
+ "zero-knowledge",
+ "poseidon2",
+ "hash-function",
+ "groth16",
+ "zk-snark"
+ ],
+ "author": "CyberSec Project",
+ "license": "MIT",
+ "dependencies": {
+ "circomlib": "^2.0.5",
+ "snarkjs": "^0.7.3",
+ "ffjavascript": "^0.2.60"
+ },
+ "devDependencies": {
+ "rimraf": "^5.0.5",
+ "chai": "^4.3.10",
+ "mocha": "^10.2.0"
+ },
+ "engines": {
+ "node": ">=16.0.0"
+ }
 }
