@@ -13,6 +13,13 @@
 - **状态**: ✅ 已完成
 - **性能提升**: T表优化+46%，批处理优化+18%
 
+### Project 2: 图片数字水印系统
+- **文件夹**: `project2-image-watermark/`
+- **描述**: 基于DCT频域变换的数字图像水印系统，支持水印嵌入、提取和鲁棒性测试
+- **技术栈**: Python、OpenCV、NumPy、PIL
+- **状态**: ✅ 已完成
+- **特色功能**: 37种攻击测试、完整评估框架、自动化演示
+
 ## 项目结构
 
 ```
@@ -21,6 +28,13 @@ cybersec_project/
 │   ├── src/                        # 源代码
 │   ├── tests/                      # 测试代码
 │   ├── benchmarks/                 # 性能测试
+│   ├── docs/                       # 项目文档
+│   └── README.md                   # 项目说明
+├── project2-image-watermark/       # 项目2：图片数字水印
+│   ├── src/                        # 源代码
+│   ├── tests/                      # 测试代码
+│   ├── samples/                    # 测试图片
+│   ├── output/                     # 输出结果
 │   ├── docs/                       # 项目文档
 │   └── README.md                   # 项目说明
 └── README.md                       # 总体说明
@@ -45,4 +59,6 @@ cybersec_project/
 ### 2025-07-12
 - 初始化Git仓库
 - 完成Project 1: SM4算法优化项目
+- 完成Project 2: 图片数字水印系统  
 - 重新整理项目结构，添加项目编号
+- 建立完整的开发和测试框架
