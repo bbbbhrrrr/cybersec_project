@@ -38,7 +38,7 @@ async function main() {
  // Start new ceremony (for small circuits, we can use a small power)
  console.log(' Starting new ceremony...');
  await snarkjs.powersOfTau.newAccumulator(
- snarkjs.getCurveFromName("bn128"),
+ "bn128",
  12, // 2^12 = 4096 constraints (adjust based on circuit size)
  ptauPath
  );

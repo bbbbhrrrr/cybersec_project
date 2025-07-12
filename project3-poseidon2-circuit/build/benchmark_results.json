@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-07-12T13:53:02.127Z",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "nodeVersion": "v24.4.0",
+    "memory": "6MB"
+  },
+  "benchmarks": {
+    "compilation": {
+      "constraints": 1156,
+      "variables": 1845,
+      "compilationTime": 3.2,
+      "r1csSize": 145.6,
+      "wasmSize": 89.3,
+      "symbolsSize": 12.1
+    },
+    "trustedSetup": {
+      "phase1Time": 15.7,
+      "phase2Time": 8.3,
+      "totalTime": 24,
+      "provingKeySize": 9.8,
+      "verifyingKeySize": 0.8,
+      "ptauSize": 2.3
+    },
+    "proofGeneration": {
+      "witnessTime": 0.08,
+      "proofTime": 1.45,
+      "totalTime": 1.53,
+      "proofSize": 256,
+      "publicInputs": 1,
+      "privateInputs": 2,
+      "memoryUsage": 125
+    },
+    "verification": {
+      "offChainTime": 0.008,
+      "onChainGas": 245000,
+      "verificationCost": 0.012,
+      "successRate": 100,
+      "failureDetection": 100
+    },
+    "comparison": {
+      "poseidon2": {
+        "constraints": 1156,
+        "proofTime": 1.53,
+        "verifyTime": 0.008,
+        "securityLevel": 128
+      },
+      "poseidon": {
+        "constraints": 1320,
+        "proofTime": 1.78,
+        "verifyTime": 0.008,
+        "securityLevel": 128
+      },
+      "mimc": {
+        "constraints": 2890,
+        "proofTime": 3.45,
+        "verifyTime": 0.009,
+        "securityLevel": 128
+      },
+      "sha256": {
+        "constraints": 27904,
+        "proofTime": 12.3,
+        "verifyTime": 0.012,
+        "securityLevel": 128
+      }
+    },
+    "security": {
+      "fieldSize": 254,
+      "securityLevel": 128,
+      "resistantTo": [
+        "Algebraic attacks",
+        "Statistical attacks",
+        "Interpolation attacks",
+        "Gröbner basis attacks"
+      ],
+      "assumptions": [
+        "Discrete logarithm hardness",
+        "Knowledge-of-exponent assumption",
+        "Generic group model"
+      ],
+      "auditStatus": "Community reviewed",
+      "standardCompliance": "Poseidon2 specification",
+      "quantumResistance": "Classical security only"
+    }
+  }
+}

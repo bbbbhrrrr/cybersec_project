@@ -118,7 +118,7 @@ class Poseidon2Benchmark {
 
  console.log(' Results:');
  console.log(` Off-chain time: ${results.offChainTime * 1000}ms`);
- console.log(` â›½ On-chain gas: ${results.onChainGas}`);
+ console.log(` â›?On-chain gas: ${results.onChainGas}`);
  console.log(` Est. cost: $${results.verificationCost}`);
  console.log(` Success rate: ${results.successRate}%`);
 

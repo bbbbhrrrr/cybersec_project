@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-07-12T13:53:14.520Z",
+  "totalDemos": 4,
+  "successRate": "100%",
+  "scenarios": [
+    {
+      "scenario": "Password Verification",
+      "publicHash": "0x0000000073813a25...",
+      "proofGenerated": true,
+      "verificationSuccessful": true,
+      "privacyPreserved": true
+    },
+    {
+      "scenario": "Secret Number Game",
+      "secretNumber": "[HIDDEN]",
+      "targetHash": "0x000000001fcb766c...",
+      "proofValid": true,
+      "numberRevealed": false
+    },
+    {
+      "scenario": "Anonymous Credentials",
+      "credentialHash": "0x00000000065ae708...",
+      "membershipVerified": true,
+      "identityRevealed": false,
+      "accessGranted": true
+    },
+    {
+      "scenario": "Private Transactions",
+      "balanceCommitment": "0x00000000781ebd0a...",
+      "transactionProcessed": true,
+      "balanceRevealed": false,
+      "sufficientFundsProven": true
+    }
+  ],
+  "summary": {
+    "passwordVerification": "Successful authentication without password disclosure",
+    "secretNumberGame": "Cryptographic proof of secret knowledge",
+    "anonymousCredentials": "Privacy-preserving membership verification",
+    "privateTransactions": "Confidential balance validation"
+  },
+  "technicalHighlights": {
+    "proofSize": "256 bytes",
+    "verificationTime": "8ms",
+    "securityLevel": "128 bits",
+    "constraintCount": 1156
+  }
+}

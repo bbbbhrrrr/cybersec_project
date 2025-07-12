@@ -71,7 +71,7 @@ async function main() {
  console.log(' verify_example.js - Usage example');
 
  // Show gas estimation
- console.log('\nâ›½ Gas Estimation:');
+ console.log('\nâ›?Gas Estimation:');
  console.log(' Deployment: ~2,500,000 gas');
  console.log(' Verification: ~250,000 gas per proof');
 
@@ -161,7 +161,7 @@ async function main() {
 
  const receipt = await tx.wait();
  console.log(' Transaction confirmed:', receipt.transactionHash);
- console.log('â›½ Gas used:', receipt.gasUsed.toString());
+ console.log('â›?Gas used:', receipt.gasUsed.toString());
 
  // Check result
  const result = await verifier.verifyProof(

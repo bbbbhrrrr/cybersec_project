@@ -38,19 +38,14 @@ template Poseidon2Round(t, isFullRound) {
     
     // Step 3: Apply MDS matrix
     if (t == 2) {
-        component mds = MDSMatrix2();
-        mds.in[0] <== afterSbox[0];
-        mds.in[1] <== afterSbox[1];
-        out[0] <== mds.out[0];
-        out[1] <== mds.out[1];
+        // MDS matrix values for t=2: [2, 1] [1, 2]
+        out[0] <== 2 * afterSbox[0] + afterSbox[1];
+        out[1] <== afterSbox[0] + 2 * afterSbox[1];
     } else if (t == 3) {
-        component mds = MDSMatrix3();
-        mds.in[0] <== afterSbox[0];
-        mds.in[1] <== afterSbox[1];
-        mds.in[2] <== afterSbox[2];
-        out[0] <== mds.out[0];
-        out[1] <== mds.out[1];
-        out[2] <== mds.out[2];
+        // MDS matrix values for t=3: [2, 1, 1] [1, 2, 1] [1, 1, 3]
+        out[0] <== 2 * afterSbox[0] + afterSbox[1] + afterSbox[2];
+        out[1] <== afterSbox[0] + 2 * afterSbox[1] + afterSbox[2];
+        out[2] <== afterSbox[0] + afterSbox[1] + 3 * afterSbox[2];
     }
 }
 
@@ -64,36 +59,4 @@ template PowerFive() {
     signal x2 <== in * in;
     signal x4 <== x2 * x2;
     out <== x4 * in;
-}
-
-/*
- * MDS Matrix for t=2
- * Optimized matrix from Poseidon2 specification
- */
-template MDSMatrix2() {
-    signal input in[2];
-    signal output out[2];
-    
-    // MDS matrix values for t=2 (from Poseidon2 paper)
-    // [2, 1]
-    // [1, 2]
-    out[0] <== 2 * in[0] + in[1];
-    out[1] <== in[0] + 2 * in[1];
-}
-
-/*
- * MDS Matrix for t=3  
- * Optimized matrix from Poseidon2 specification
- */
-template MDSMatrix3() {
-    signal input in[3];
-    signal output out[3];
-    
-    // MDS matrix values for t=3 (from Poseidon2 paper)
-    // [2, 1, 1]
-    // [1, 2, 1] 
-    // [1, 1, 3]
-    out[0] <== 2 * in[0] + in[1] + in[2];
-    out[1] <== in[0] + 2 * in[1] + in[2];
-    out[2] <== in[0] + in[1] + 3 * in[2];
 }

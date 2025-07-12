@@ -26,7 +26,7 @@ async function main() {
  fs.mkdirSync(proofsDir, { recursive: true });
  }
 
- const wasmPath = path.join(buildDir, 'poseidon2.wasm');
+ const wasmPath = path.join(buildDir, 'poseidon2_js', 'poseidon2.wasm');
  const zkeyPath = path.join(setupDir, 'poseidon2_final.zkey');
 
  // Check required files

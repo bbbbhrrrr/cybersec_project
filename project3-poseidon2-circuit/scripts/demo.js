@@ -180,7 +180,7 @@ class Poseidon2Demo {
  console.log();
 
  console.log('Step 3: Transaction Proof');
- console.log(' David proves balance ≥ transaction amount');
+ console.log(' David proves balance �?transaction amount');
  console.log(' 📤 Zero-knowledge proof generated');
  console.log(' Network verifies sufficient funds');
  console.log();

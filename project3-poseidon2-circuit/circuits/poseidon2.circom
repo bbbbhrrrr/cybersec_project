@@ -84,7 +84,7 @@ template Poseidon2Hash(t) {
  */
 template Poseidon2ZK() {
     // Private inputs (preimage)
-    signal private input preimage[2];  // Using t=3, so 2 field elements as input
+    signal input preimage[2];  // Using t=3, so 2 field elements as input
     
     // Public inputs (hash value)  
     signal input hash;
