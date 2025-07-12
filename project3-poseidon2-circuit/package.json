@@ -11,6 +11,9 @@
     "export": "node scripts/export.js",
     "test": "node scripts/test.js",
     "test-unit": "npx mocha tests/poseidon2.test.js --reporter spec",
+    "analyze": "node scripts/analyze.js",
+    "benchmark": "node scripts/benchmark.js",
+    "demo": "node scripts/demo.js",
     "clean": "rimraf build setup/ptau setup/zkey proofs"
   },
   "keywords": [
