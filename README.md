@@ -17,9 +17,6 @@
 
 ```
 cybersec_project/
-├── docs/                           # 课程文档
-│   ├── 课程要求.md
-│   └── 项目评估标准.md
 ├── project1-sm4-optimization/      # 项目1：SM4算法优化
 │   ├── src/                        # 源代码
 │   ├── tests/                      # 测试代码
