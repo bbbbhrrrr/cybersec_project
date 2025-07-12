@@ -8,8 +8,10 @@
     "setup": "node scripts/setup.js", 
     "prove": "node scripts/prove.js",
     "verify": "node scripts/verify.js",
+    "export": "node scripts/export.js",
     "test": "node scripts/test.js",
-    "clean": "rimraf build setup/ptau setup/zkey"
+    "test-unit": "npx mocha tests/poseidon2.test.js --reporter spec",
+    "clean": "rimraf build setup/ptau setup/zkey proofs"
   },
   "keywords": [
     "circom",
