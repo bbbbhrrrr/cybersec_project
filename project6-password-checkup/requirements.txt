@@ -1,0 +1,5 @@
+cryptography>=3.4.0
+ecdsa>=0.17.0
+hashlib2>=0.1.0
+requests>=2.25.0
+numpy>=1.21.0
