@@ -36,13 +36,13 @@ async function main() {
  }
 
  try {
- console.log('📁 Verification key:', vkeyPath);
- console.log('📁 Proof file:', proofPath);
- console.log('📁 Public inputs:', publicPath);
+ console.log(' Verification key:', vkeyPath);
+ console.log(' Proof file:', proofPath);
+ console.log(' Public inputs:', publicPath);
  console.log();
 
  // Load verification artifacts
- console.log('📖 Loading verification artifacts...');
+ console.log(' Loading verification artifacts...');
  const vKey = JSON.parse(fs.readFileSync(vkeyPath));
  const proof = JSON.parse(fs.readFileSync(proofPath));
  const publicSignals = JSON.parse(fs.readFileSync(publicPath));
@@ -54,8 +54,8 @@ async function main() {
  // Show verification details
  console.log('\n Verification Details:');
  console.log(` Public hash: ${publicSignals[0]}`);
- console.log(` 📏 Proof size: ${JSON.stringify(proof).length} bytes`);
- console.log(` 🔢 Public signals count: ${publicSignals.length}`);
+ console.log(` Proof size: ${JSON.stringify(proof).length} bytes`);
+ console.log(` Public signals count: ${publicSignals.length}`);
 
  // Perform verification
  console.log('\n Verifying proof...');
@@ -74,14 +74,14 @@ async function main() {
  console.log(' No information about the preimage was revealed');
  } else {
  console.log(' PROOF IS INVALID');
- console.log(' 🚫 The proof verification failed');
+ console.log(' The proof verification failed');
  }
 
  // Performance summary
  console.log('\n Performance Summary:');
  console.log(` Verification time: ${verifyTime}ms`);
- console.log(` 📦 Proof size: ${JSON.stringify(proof).length} bytes`);
- console.log(` 🔢 Gas cost estimate: ~250,000 gas (on Ethereum)`);
+ console.log(` Proof size: ${JSON.stringify(proof).length} bytes`);
+ console.log(` Gas cost estimate: ~250,000 gas (on Ethereum)`);
 
  // Security analysis
  console.log('\n Security Properties:');

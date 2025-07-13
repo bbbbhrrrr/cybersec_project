@@ -12,10 +12,10 @@ __author__ = "SM2 Optimization Project"
 __description__ = "SM2椭圆曲线数字签名算法基础实现"
 
 __all__ = [
-    "SM2Curve",
-    "ECCPoint", 
-    "SM3Hash",
-    "sm3_hash",
-    "sm3_hexdigest",
-    "SM2Signature"
+ "SM2Curve",
+ "ECCPoint",
+ "SM3Hash",
+ "sm3_hash",
+ "sm3_hexdigest",
+ "SM2Signature"
 ]

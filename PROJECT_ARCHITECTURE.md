@@ -31,26 +31,26 @@ CyberSec Project是一个综合性的网络安全与密码学实验项目集合�
 ```
 CyberSec Project Architecture
 ┌─────────────────────────────────────────────────────────────────┐
-│                     Application Layer                           │
+│ Application Layer │
 ├─────────────────────────────────────────────────────────────────┤
-│  Digital       Secure        Privacy         Blockchain         │
-│  Watermark     Communication Computing       Applications       │
+│ Digital Secure Privacy Blockchain │
+│ Watermark Communication Computing Applications │
 ├─────────────────────────────────────────────────────────────────┤
-│                    Algorithm Layer                              │
+│ Algorithm Layer │
 ├─────────────────────────────────────────────────────────────────┤
-│ Project2       Project1       Project4       Project3          │
-│ Image          SM4            SM3            Poseidon2         │
-│ Watermark      Optimization   Optimization   ZK Circuit        │
+│ Project2 Project1 Project4 Project3 │
+│ Image SM4 SM3 Poseidon2 │
+│ Watermark Optimization Optimization ZK Circuit │
 ├─────────────────────────────────────────────────────────────────┤
-│                   Optimization Layer                           │
+│ Optimization Layer │
 ├─────────────────────────────────────────────────────────────────┤
-│ SIMD/AVX2      Algorithm      Memory         Circuit           │
-│ Acceleration   Optimization   Optimization   Optimization      │
+│ SIMD/AVX2 Algorithm Memory Circuit │
+│ Acceleration Optimization Optimization Optimization │
 ├─────────────────────────────────────────────────────────────────┤
-│                    Platform Layer                              │
+│ Platform Layer │
 ├─────────────────────────────────────────────────────────────────┤
-│ Windows/Linux  x86_64/ARM     CPU/GPU        Node.js/Browser   │
-│ Cross-Platform Multi-Arch     Hardware       JavaScript VM     │
+│ Windows/Linux x86_64/ARM CPU/GPU Node.js/Browser │
+│ Cross-Platform Multi-Arch Hardware JavaScript VM │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -72,20 +72,20 @@ CyberSec Project Architecture
 ```
 Programming Languages Distribution:
 ┌─────────────────────────────────────────┐
-│ C/C++        ████████████████░░ 40%     │
-│ Python       ████████████░░░░░░ 25%     │  
-│ JavaScript   ████████░░░░░░░░░░ 20%     │
-│ Circom       ████░░░░░░░░░░░░░░ 10%     │
-│ Solidity     █░░░░░░░░░░░░░░░░░  3%     │
-│ Other        █░░░░░░░░░░░░░░░░░  2%     │
+│ C/C++ ████████████████░░ 40% │
+│ Python ████████████░░░░░░ 25% │
+│ JavaScript ████████░░░░░░░░░░ 20% │
+│ Circom ████░░░░░░░░░░░░░░ 10% │
+│ Solidity █░░░░░░░░░░░░░░░░░ 3% │
+│ Other █░░░░░░░░░░░░░░░░░ 2% │
 └─────────────────────────────────────────┘
 
 Technology Stack Coverage:
 ┌─────────────────────────────────────────┐
-│ Cryptography ████████████████████ 50%   │
-│ Optimization ████████████░░░░░░░░ 30%   │
-│ ZK/Blockchain ███████░░░░░░░░░░░ 15%    │
-│ Image Processing ██░░░░░░░░░░░░░  5%    │
+│ Cryptography ████████████████████ 50% │
+│ Optimization ████████████░░░░░░░░ 30% │
+│ ZK/Blockchain ███████░░░░░░░░░░░ 15% │
+│ Image Processing ██░░░░░░░░░░░░░ 5% │
 └─────────────────────────────────────────┘
 ```
 
@@ -97,21 +97,21 @@ Technology Stack Coverage:
 ```
 SM4 Algorithm Implementation
 ├── Interface Layer
-│   ├── sm4_encrypt() - 标准加密接口
-│   ├── sm4_decrypt() - 标准解密接口
-│   └── sm4_key_schedule() - 密钥扩展接口
+│ ├── sm4_encrypt() - 标准加密接口
+│ ├── sm4_decrypt() - 标准解密接口
+│ └── sm4_key_schedule() - 密钥扩展接口
 ├── Implementation Layer
-│   ├── Basic Version - 标准C实现
-│   ├── SIMD Version - AVX2优化
-│   └── T-Table Version - 查表加速
+│ ├── Basic Version - 标准C实现
+│ ├── SIMD Version - AVX2优化
+│ └── T-Table Version - 查表加速
 ├── Optimization Layer
-│   ├── SIMD Intrinsics - 向量化指令
-│   ├── Loop Unrolling - 循环展开
-│   └── Memory Alignment - 内存对齐
+│ ├── SIMD Intrinsics - 向量化指令
+│ ├── Loop Unrolling - 循环展开
+│ └── Memory Alignment - 内存对齐
 └── Platform Layer
-    ├── x86_64 - Intel/AMD处理器
-    ├── Compiler Optimization - GCC/MSVC
-    └── OS Support - Windows/Linux
+ ├── x86_64 - Intel/AMD处理器
+ ├── Compiler Optimization - GCC/MSVC
+ └── OS Support - Windows/Linux
 ```
 
 #### 核心组件
@@ -126,21 +126,21 @@ SM4 Algorithm Implementation
 ```
 Digital Watermark System
 ├── Application Layer
-│   ├── Watermark Embedding - 水印嵌入
-│   ├── Watermark Extraction - 水印提取
-│   └── Robustness Testing - 鲁棒性测试
+│ ├── Watermark Embedding - 水印嵌入
+│ ├── Watermark Extraction - 水印提取
+│ └── Robustness Testing - 鲁棒性测试
 ├── Algorithm Layer
-│   ├── DCT Transform - 离散余弦变换
-│   ├── QIM Modulation - 量化索引调制
-│   └── Error Correction - 错误纠正编码
+│ ├── DCT Transform - 离散余弦变换
+│ ├── QIM Modulation - 量化索引调制
+│ └── Error Correction - 错误纠正编码
 ├── Processing Layer
-│   ├── Image I/O - 图像读写
-│   ├── Block Processing - 分块处理
-│   └── Quality Assessment - 质量评估
+│ ├── Image I/O - 图像读写
+│ ├── Block Processing - 分块处理
+│ └── Quality Assessment - 质量评估
 └── Attack Layer
-    ├── Geometric Attacks - 几何变换攻击
-    ├── Signal Processing - 信号处理攻击
-    └── Robustness Analysis - 鲁棒性分析
+ ├── Geometric Attacks - 几何变换攻击
+ ├── Signal Processing - 信号处理攻击
+ └── Robustness Analysis - 鲁棒性分析
 ```
 
 #### 核心组件
@@ -155,22 +155,22 @@ Digital Watermark System
 ```
 Poseidon2 ZK Circuit System
 ├── Circuit Layer
-│   ├── Poseidon2 Hash - 代数哈希函数
-│   ├── Field Operations - 有限域运算
-│   └── Constraint System - 约束系统
+│ ├── Poseidon2 Hash - 代数哈希函数
+│ ├── Field Operations - 有限域运算
+│ └── Constraint System - 约束系统
 ├── Proof System Layer
-│   ├── Circuit Compilation - 电路编译
-│   ├── Trusted Setup - 可信设置
-│   ├── Proof Generation - 证明生成
-│   └── Proof Verification - 证明验证
+│ ├── Circuit Compilation - 电路编译
+│ ├── Trusted Setup - 可信设置
+│ ├── Proof Generation - 证明生成
+│ └── Proof Verification - 证明验证
 ├── Integration Layer
-│   ├── JavaScript API - JS接口
-│   ├── Smart Contract - 智能合约验证器
-│   └── CLI Tools - 命令行工具
+│ ├── JavaScript API - JS接口
+│ ├── Smart Contract - 智能合约验证器
+│ └── CLI Tools - 命令行工具
 └── Infrastructure Layer
-    ├── Circom Compiler - 电路编译器
-    ├── snarkjs Library - ZK工具库
-    └── Ethereum Network - 以太坊网络
+ ├── Circom Compiler - 电路编译器
+ ├── snarkjs Library - ZK工具库
+ └── Ethereum Network - 以太坊网络
 ```
 
 #### 核心组件
@@ -185,22 +185,22 @@ Poseidon2 ZK Circuit System
 ```
 SM3 Hash Algorithm Implementation
 ├── Interface Layer
-│   ├── sm3_hash() - 一次性哈希接口
-│   ├── sm3_init/update/final() - 流式接口
-│   └── sm3_batch_hash() - 批量处理接口
+│ ├── sm3_hash() - 一次性哈希接口
+│ ├── sm3_init/update/final() - 流式接口
+│ └── sm3_batch_hash() - 批量处理接口
 ├── Implementation Layer
-│   ├── Basic Version - 标准实现
-│   ├── SIMD Version - AVX2优化
-│   └── Optimized Version - 高级优化
+│ ├── Basic Version - 标准实现
+│ ├── SIMD Version - AVX2优化
+│ └── Optimized Version - 高级优化
 ├── Optimization Layer
-│   ├── Loop Unrolling - 循环展开
-│   ├── Precomputed Tables - 预计算表
-│   ├── SIMD Parallelization - SIMD并行
-│   └── Memory Optimization - 内存优化
+│ ├── Loop Unrolling - 循环展开
+│ ├── Precomputed Tables - 预计算表
+│ ├── SIMD Parallelization - SIMD并行
+│ └── Memory Optimization - 内存优化
 └── Platform Layer
-    ├── Cross-Platform - 跨平台支持
-    ├── Compiler Flags - 编译优化
-    └── Hardware Detection - 硬件检测
+ ├── Cross-Platform - 跨平台支持
+ ├── Compiler Flags - 编译优化
+ └── Hardware Detection - 硬件检测
 ```
 
 #### 核心组件
@@ -216,14 +216,14 @@ SM3 Hash Algorithm Implementation
 #### 对称密码 (SM4)
 ```c
 // 核心加密函数
-void sm4_encrypt_block(const uint8_t *plaintext, 
-                      uint8_t *ciphertext, 
-                      const uint32_t *round_keys);
+void sm4_encrypt_block(const uint8_t *plaintext,
+ uint8_t *ciphertext,
+ const uint32_t *round_keys);
 
 // SIMD优化版本
-void sm4_simd_encrypt_blocks(__m128i *blocks, 
-                           const uint32_t *round_keys, 
-                           int block_count);
+void sm4_simd_encrypt_blocks(__m128i *blocks,
+ const uint32_t *round_keys,
+ int block_count);
 ```
 
 #### 哈希函数 (SM3)
@@ -233,10 +233,10 @@ void sm3_hash(const uint8_t *data, size_t len, uint8_t *digest);
 
 // 流式处理接口
 typedef struct {
-    uint32_t state[8];
-    uint8_t buffer[64];
-    uint64_t bitlen;
-    uint32_t buflen;
+ uint32_t state[8];
+ uint8_t buffer[64];
+ uint64_t bitlen;
+ uint32_t buflen;
 } sm3_ctx_t;
 ```
 
@@ -244,12 +244,12 @@ typedef struct {
 ```javascript
 // 电路模板定义
 template Poseidon2(t, nRoundsF, nRoundsP) {
-    signal input inputs[t];
-    signal output out;
-    
-    // 电路实现逻辑
-    component rounds[nRoundsF + nRoundsP];
-    // ...
+ signal input inputs[t];
+ signal output out;
+
+ // 电路实现逻辑
+ component rounds[nRoundsF + nRoundsP];
+ // ...
 }
 ```
 
@@ -259,9 +259,9 @@ template Poseidon2(t, nRoundsF, nRoundsP) {
 ```c
 // AVX2向量化示例
 __m256i simd_process_8way(__m256i data) {
-    __m256i result = _mm256_xor_si256(data, constant);
-    result = _mm256_add_epi32(result, _mm256_rol_epi32(result, 12));
-    return result;
+ __m256i result = _mm256_xor_si256(data, constant);
+ result = _mm256_add_epi32(result, _mm256_rol_epi32(result, 12));
+ return result;
 }
 ```
 
@@ -269,9 +269,9 @@ __m256i simd_process_8way(__m256i data) {
 ```c
 // 缓存友好的数据结构
 typedef struct {
-    uint32_t state[8] __attribute__((aligned(32)));
-    uint8_t buffer[64] __attribute__((aligned(64)));
-    // 其他字段...
+ uint32_t state[8] __attribute__((aligned(32)));
+ uint8_t buffer[64] __attribute__((aligned(64)));
+ // 其他字段...
 } optimized_ctx_t;
 ```
 
@@ -281,10 +281,10 @@ typedef struct {
 ```c
 // 通用密码学接口
 typedef struct {
-    int (*init)(void *ctx);
-    int (*update)(void *ctx, const uint8_t *data, size_t len);
-    int (*final)(void *ctx, uint8_t *output);
-    void (*cleanup)(void *ctx);
+ int (*init)(void *ctx);
+ int (*update)(void *ctx, const uint8_t *data, size_t len);
+ int (*final)(void *ctx, uint8_t *output);
+ void (*cleanup)(void *ctx);
 } crypto_interface_t;
 ```
 
@@ -302,11 +302,11 @@ typedef struct {
 ```c
 // 统一的基准测试配置
 typedef struct {
-    const char *name;           // 测试名称
-    size_t data_size;          // 数据大小
-    int iterations;            // 迭代次数
-    int warmup_iterations;     // 预热次数
-    bool verify_correctness;   // 正确性验证
+ const char *name; // 测试名称
+ size_t data_size; // 数据大小
+ int iterations; // 迭代次数
+ int warmup_iterations; // 预热次数
+ bool verify_correctness; // 正确性验证
 } benchmark_config_t;
 ```
 
@@ -314,31 +314,31 @@ typedef struct {
 
 #### 加密算法性能 (MB/s)
 ```
-SM4 Basic:      100 MB/s    (baseline)
-SM4 SIMD:       350 MB/s    (3.5x speedup)
-SM4 T-Table:    280 MB/s    (2.8x speedup)
+SM4 Basic: 100 MB/s (baseline)
+SM4 SIMD: 350 MB/s (3.5x speedup)
+SM4 T-Table: 280 MB/s (2.8x speedup)
 ```
 
 #### 哈希算法性能 (MB/s)
 ```
-SM3 Basic:      211 MB/s    (baseline)
-SM3 Optimized:  251 MB/s    (1.19x speedup)
-SM3 Large Data: 315 MB/s    (1.5x for 16KB+)
+SM3 Basic: 211 MB/s (baseline)
+SM3 Optimized: 251 MB/s (1.19x speedup)
+SM3 Large Data: 315 MB/s (1.5x for 16KB+)
 ```
 
 #### 水印系统性能
 ```
-Image Quality:  PSNR 51.2 dB
-Robustness:     78% (37 attack types)
-Processing:     0.8 sec/image (512×512)
+Image Quality: PSNR 51.2 dB
+Robustness: 78% (37 attack types)
+Processing: 0.8 sec/image (512×512)
 ```
 
 #### 零知识证明性能
 ```
-Circuit Size:   1,156 constraints
-Proof Time:     1.5 seconds
-Verify Time:    8 milliseconds
-Setup Time:     45 seconds
+Circuit Size: 1,156 constraints
+Proof Time: 1.5 seconds
+Verify Time: 8 milliseconds
+Setup Time: 45 seconds
 ```
 
 ## 安全性分析
@@ -368,8 +368,8 @@ Setup Time:     45 seconds
 ```c
 // 常数时间实现示例
 static inline uint32_t ct_select(uint32_t flag, uint32_t a, uint32_t b) {
-    uint32_t mask = -(flag & 1);
-    return (a & mask) | (b & ~mask);
+ uint32_t mask = -(flag & 1);
+ return (a & mask) | (b & ~mask);
 }
 ```
 
@@ -377,8 +377,8 @@ static inline uint32_t ct_select(uint32_t flag, uint32_t a, uint32_t b) {
 ```c
 // 安全内存清理
 void secure_memzero(void *ptr, size_t len) {
-    volatile uint8_t *p = (volatile uint8_t *)ptr;
-    while (len--) *p++ = 0;
+ volatile uint8_t *p = (volatile uint8_t *)ptr;
+ while (len--) *p++ = 0;
 }
 ```
 
@@ -391,53 +391,53 @@ void secure_memzero(void *ptr, size_t len) {
 # Docker容器化部署示例
 version: '3.8'
 services:
-  sm4-crypto:
-    build: ./project1-sm4-optimization
-    ports:
-      - "8001:8000"
-    environment:
-      - OPTIMIZATION_LEVEL=simd
-      
-  watermark-service:
-    build: ./project2-image-watermark
-    ports:
-      - "8002:8000"
-    volumes:
-      - ./images:/app/images
-      
-  zk-prover:
-    build: ./project3-poseidon2-circuit
-    ports:
-      - "8003:8000"
-    environment:
-      - NODE_ENV=production
-      
-  sm3-hasher:
-    build: ./project4-sm3-optimization
-    ports:
-      - "8004:8000"
-    environment:
-      - OPTIMIZATION_LEVEL=optimized
+ sm4-crypto:
+ build: ./project1-sm4-optimization
+ ports:
+ - "8001:8000"
+ environment:
+ - OPTIMIZATION_LEVEL=simd
+
+ watermark-service:
+ build: ./project2-image-watermark
+ ports:
+ - "8002:8000"
+ volumes:
+ - ./images:/app/images
+
+ zk-prover:
+ build: ./project3-poseidon2-circuit
+ ports:
+ - "8003:8000"
+ environment:
+ - NODE_ENV=production
+
+ sm3-hasher:
+ build: ./project4-sm3-optimization
+ ports:
+ - "8004:8000"
+ environment:
+ - OPTIMIZATION_LEVEL=optimized
 ```
 
 ### 集成部署
 
 #### 微服务架构
 ```
-┌─────────────────┐    ┌─────────────────┐
-│   Load Balancer │    │   API Gateway   │
-│    (Nginx)      │    │   (Express.js)  │
-└─────────┬───────┘    └─────────┬───────┘
-          │                      │
-          └──────────┬───────────┘
-                     │
-      ┌──────────────┼──────────────┐
-      │              │              │
-┌─────▼────┐  ┌─────▼────┐  ┌─────▼────┐
-│ Crypto   │  │ Watermark│  │ ZK Proof │
-│ Service  │  │ Service  │  │ Service  │
-│ (SM4/SM3)│  │ (Image)  │  │(Poseidon)│
-└──────────┘  └──────────┘  └──────────┘
+┌─────────────────┐ ┌─────────────────┐
+│ Load Balancer │ │ API Gateway │
+│ (Nginx) │ │ (Express.js) │
+└─────────┬───────┘ └─────────┬───────┘
+ │ │
+ └──────────┬───────────┘
+ │
+ ┌──────────────┼──────────────┐
+ │ │ │
+┌─────▼────┐ ┌─────▼────┐ ┌─────▼────┐
+│ Crypto │ │ Watermark│ │ ZK Proof │
+│ Service │ │ Service │ │ Service │
+│ (SM4/SM3)│ │ (Image) │ │(Poseidon)│
+└──────────┘ └──────────┘ └──────────┘
 ```
 
 ### 云平台部署
@@ -447,27 +447,27 @@ services:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cybersec-suite
+ name: cybersec-suite
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: cybersec
-  template:
-    metadata:
-      labels:
-        app: cybersec
-    spec:
-      containers:
-      - name: crypto-service
-        image: cybersec/crypto:latest
-        resources:
-          requests:
-            cpu: 500m
-            memory: 1Gi
-          limits:
-            cpu: 2000m
-            memory: 4Gi
+ replicas: 3
+ selector:
+ matchLabels:
+ app: cybersec
+ template:
+ metadata:
+ labels:
+ app: cybersec
+ spec:
+ containers:
+ - name: crypto-service
+ image: cybersec/crypto:latest
+ resources:
+ requests:
+ cpu: 500m
+ memory: 1Gi
+ limits:
+ cpu: 2000m
+ memory: 4Gi
 ```
 
 ## 未来扩展规划

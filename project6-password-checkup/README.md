@@ -32,15 +32,15 @@ Google Password Checkup使用密码学协议来保护用户隐私：
 ```
 project6-password-checkup/
 ├── src/
-│   ├── client/          # 客户端实现
-│   ├── server/          # 服务端实现
-│   ├── crypto/          # 密码学基础组件
-│   └── common/          # 通用工具
-├── tests/               # 测试用例
-├── docs/                # 技术文档
-├── data/                # 测试数据
-├── benchmarks/          # 性能测试
-└── output/              # 输出结果
+│ ├── client/ # 客户端实现
+│ ├── server/ # 服务端实现
+│ ├── crypto/ # 密码学基础组件
+│ └── common/ # 通用工具
+├── tests/ # 测试用例
+├── docs/ # 技术文档
+├── data/ # 测试数据
+├── benchmarks/ # 性能测试
+└── output/ # 输出结果
 ```
 
 ## 技术要求

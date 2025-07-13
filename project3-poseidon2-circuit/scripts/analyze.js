@@ -50,7 +50,7 @@ function analyzeCircuitStructure(code) {
 
  // Count signals
  const signals = code.match(/signal\s+(input|output|private)/g) || [];
- console.log(` 🔌 Signals: ${signals.length}`);
+ console.log(` Signals: ${signals.length}`);
 
  // Count constraints (approximate)
  const constraints = code.match(/\<==|\===|==>/g) || [];
@@ -60,7 +60,7 @@ function analyzeCircuitStructure(code) {
 }
 
 function analyzeUtilsModules(utilsDir) {
- console.log('🧩 Utils Modules:');
+ console.log(' Utils Modules:');
 
  if (!fs.existsSync(utilsDir)) {
  console.log(' Utils directory not found');
@@ -68,7 +68,7 @@ function analyzeUtilsModules(utilsDir) {
  }
 
  const files = fs.readdirSync(utilsDir).filter(f => f.endsWith('.circom'));
- console.log(` 📁 Files: ${files.length}`);
+ console.log(` Files: ${files.length}`);
 
  files.forEach(file => {
  const filePath = path.join(utilsDir, file);

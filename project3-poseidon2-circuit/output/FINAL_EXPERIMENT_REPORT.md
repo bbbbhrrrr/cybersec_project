@@ -27,7 +27,7 @@
 ```
 设置完成
 - Phase 1时间: ~15.7秒
-- Phase 2时间: ~8.3秒 
+- Phase 2时间: ~8.3秒
 - Proving Key: 9.8MB
 - Verification Key: 0.8KB
 ```
@@ -54,7 +54,7 @@
 
 **Poseidon2性能优势:**
 - 比SHA-256减少95.9%约束
-- 比MiMC减少60%约束  
+- 比MiMC减少60%约束
 - 亚秒级证明生成
 - 毫秒级验证速度
 
@@ -62,7 +62,7 @@
 
 ### 核心工具版本
 - Node.js: v24.4.0
-- Circom: v2.2.2  
+- Circom: v2.2.2
 - Rust: v1.88.0
 - snarkjs: v0.7.5
 - BN254曲线: 128位安全
@@ -71,19 +71,19 @@
 ```circom
 // 主要模板结构
 template Poseidon2ZK() {
-    signal input preimage[2];
-    signal input hash;
-    
-    component hasher = Poseidon2Hash(3);
-    hasher.inputs[0] <== preimage[0];
-    hasher.inputs[1] <== preimage[1];
-    
-    hash === hasher.out;
+ signal input preimage[2];
+ signal input hash;
+
+ component hasher = Poseidon2Hash(3);
+ hasher.inputs[0] <== preimage[0];
+ hasher.inputs[1] <== preimage[1];
+
+ hash === hasher.out;
 }
 
 // 模块化设计(8个核心模块)
 ├── Poseidon2ZK - 主证明电路
-├── Poseidon2Hash - 哈希函数实现  
+├── Poseidon2Hash - 哈希函数实现
 ├── Poseidon2Permutation - 核心置换
 ├── Poseidon2Round - 轮函数
 ├── Poseidon2Constants - 轮常数
@@ -133,27 +133,27 @@ template Poseidon2ZK() {
 
 ```
 project3-poseidon2-circuit/
-├── circuits/              # 电路源码
-│  ├── poseidon2.circom     # 主电路
-│  ├── poseidon2_simple.circom # 测试电路
-│  └── utils/               # 工具模块
-├── build/                # 编译输出  
-│  ├── poseidon2.r1cs      # 约束系统
-│  ├── poseidon2.wasm      # WASM见证器
-│  └── poseidon2_js/       # JS接口
-├── setup/               # 可信设置
-│  ├── poseidon2_final.zkey # 最终密钥
-│  ├── verification_key.json # 验证密钥
-│  └── powersOfTauFinal.ptau # 通用设置
-├── scripts/             # 自动化脚本
-│  ├── compile.js          # 编译脚本
-│  ├── setup_cli.js        # 设置脚本  
-│  ├── prove_simple.js     # 证明脚本
-│  └── benchmark.js        # 基准测试
-└── output/              # 实验结果
-    ├── proof.json          # 零知识证明
-    ├── public.json         # 公开输入
-    └── 分析报告.txt        # 详细报告
+├── circuits/ # 电路源码
+│ ├── poseidon2.circom # 主电路
+│ ├── poseidon2_simple.circom # 测试电路
+│ └── utils/ # 工具模块
+├── build/ # 编译输出
+│ ├── poseidon2.r1cs # 约束系统
+│ ├── poseidon2.wasm # WASM见证器
+│ └── poseidon2_js/ # JS接口
+├── setup/ # 可信设置
+│ ├── poseidon2_final.zkey # 最终密钥
+│ ├── verification_key.json # 验证密钥
+│ └── powersOfTauFinal.ptau # 通用设置
+├── scripts/ # 自动化脚本
+│ ├── compile.js # 编译脚本
+│ ├── setup_cli.js # 设置脚本
+│ ├── prove_simple.js # 证明脚本
+│ └── benchmark.js # 基准测试
+└── output/ # 实验结果
+ ├── proof.json # 零知识证明
+ ├── public.json # 公开输入
+ └── 分析报告.txt # 详细报告
 ```
 
 ## 实际运行结果
@@ -162,11 +162,11 @@ project3-poseidon2-circuit/
 ```json
 实际生成的proof.json:
 {
-  "pi_a": ["11716317175590692306205295215091905310490085735874140703392624942315107160249", ...],
-  "pi_b": [["20791382461639283866634418638036911758364611076134009563579958249790982911737", ...], ...],
-  "pi_c": ["18469736641934014189213512216376999285342573404750490499794136459713246899894", ...],
-  "protocol": "groth16",
-  "curve": "bn128"
+ "pi_a": ["11716317175590692306205295215091905310490085735874140703392624942315107160249", ...],
+ "pi_b": [["20791382461639283866634418638036911758364611076134009563579958249790982911737", ...], ...],
+ "pi_c": ["18469736641934014189213512216376999285342573404750490499794136459713246899894", ...],
+ "protocol": "groth16",
+ "curve": "bn128"
 }
 
 验证结果: [INFO] snarkJS: OK!
@@ -176,7 +176,7 @@ project3-poseidon2-circuit/
 ```
 实测性能指标:
 - 编译成功率: 100%
-- 设置成功率: 100%  
+- 设置成功率: 100%
 - 证明生成成功率: 100%
 - 验证通过率: 100%
 - 平均证明时间: 1.53秒
@@ -235,7 +235,7 @@ project3-poseidon2-circuit/
 
 ---
 
-**实验完成时间**: 2025年7月12日 
-**实验环境**: Windows 11 + 完整ZK开发栈  
-**项目状态**: 完全成功  
+**实验完成时间**: 2025年7月12日
+**实验环境**: Windows 11 + 完整ZK开发栈
+**项目状态**: 完全成功
 **后续计划**: 准备生产环境部署

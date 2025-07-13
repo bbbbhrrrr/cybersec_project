@@ -10,7 +10,7 @@ const { execSync } = require('child_process');
  */
 
 async function main() {
- console.log('🔨 Compiling Poseidon2 Circuit...\n');
+ console.log(' Compiling Poseidon2 Circuit...\n');
 
  // Create build directory
  const buildDir = path.join(__dirname, '../build');
@@ -22,8 +22,8 @@ async function main() {
  const outputDir = buildDir;
 
  try {
- console.log('📁 Circuit file:', circuitPath);
- console.log('📁 Output directory:', outputDir);
+ console.log(' Circuit file:', circuitPath);
+ console.log(' Output directory:', outputDir);
  console.log();
 
  // Compile circuit
@@ -47,11 +47,11 @@ async function main() {
  try {
  const snarkjs = require('snarkjs');
  const r1cs = await snarkjs.r1cs.info(r1csPath);
- console.log(` 🔢 Constraints: ${r1cs.nConstraints}`);
- console.log(` 🔢 Variables: ${r1cs.nVariables}`);
- console.log(` 🔢 Public inputs: ${r1cs.nPublicInputs}`);
- console.log(` 🔢 Private inputs: ${r1cs.nPrivateInputs}`);
- console.log(` 🔢 Outputs: ${r1cs.nOutputs}`);
+ console.log(` Constraints: ${r1cs.nConstraints}`);
+ console.log(` Variables: ${r1cs.nVariables}`);
+ console.log(` Public inputs: ${r1cs.nPublicInputs}`);
+ console.log(` Private inputs: ${r1cs.nPrivateInputs}`);
+ console.log(` Outputs: ${r1cs.nOutputs}`);
  } catch (err) {
  console.log(' Unable to read circuit statistics');
  }

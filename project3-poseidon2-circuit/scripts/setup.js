@@ -27,8 +27,8 @@ async function main() {
  }
 
  try {
- console.log('📁 R1CS file:', r1csPath);
- console.log('📁 Setup directory:', setupDir);
+ console.log(' R1CS file:', r1csPath);
+ console.log(' Setup directory:', setupDir);
  console.log();
 
  // Phase 1: Powers of Tau ceremony
@@ -63,14 +63,14 @@ async function main() {
  console.log(' Phase 2: Circuit-specific setup...');
  const zkeyPath = path.join(setupDir, 'poseidon2.zkey');
 
- console.log(' 🔑 Generating initial zkey...');
+ console.log(' Generating initial zkey...');
  await snarkjs.groth16.setup(
  r1csPath,
  ptauFinalPath,
  zkeyPath
  );
 
- console.log(' 🔑 Contributing to phase 2...');
+ console.log(' Contributing to phase 2...');
  const zkeyFinalPath = path.join(setupDir, 'poseidon2_final.zkey');
  await snarkjs.zKey.contribute(
  zkeyPath,
@@ -80,25 +80,25 @@ async function main() {
  );
 
  // Export verification key
- console.log(' 📤 Exporting verification key...');
+ console.log(' Exporting verification key...');
  const vkeyPath = path.join(setupDir, 'verification_key.json');
  const vKey = await snarkjs.zKey.exportVerificationKey(zkeyFinalPath);
  fs.writeFileSync(vkeyPath, JSON.stringify(vKey, null, 2));
 
  console.log('\n Trusted setup completed!');
  console.log('\nGenerated files:');
- console.log(' 🔑 poseidon2_final.zkey - Final proving key');
- console.log(' 🔓 verification_key.json - Verification key');
+ console.log(' poseidon2_final.zkey - Final proving key');
+ console.log(' verification_key.json - Verification key');
  console.log(' powersOfTauFinal.ptau - Universal setup');
 
  // Show verification key info
  console.log('\n Verification Key Info:');
- console.log(` 📐 Curve: ${vKey.curve}`);
- console.log(` 🔢 IC length: ${vKey.IC.length}`);
+ console.log(` Curve: ${vKey.curve}`);
+ console.log(` IC length: ${vKey.IC.length}`);
  console.log(` Protocol: ${vKey.protocol}`);
 
  // Clean up intermediate files
- console.log('\n🧹 Cleaning up intermediate files...');
+ console.log('\n Cleaning up intermediate files...');
  [ptauPath, ptauPath1, zkeyPath].forEach(file => {
  if (fs.existsSync(file)) {
  fs.unlinkSync(file);

@@ -15,23 +15,23 @@ Google Password Checkup是一种基于私有集合交集(Private Set Intersectio
 ### 协议流程
 
 ```
-客户端                                服务端
-   |                                     |
-   | 1. 哈希密码                         |
-   | 2. 生成盲化因子 r                   |
-   | 3. 计算 H(password)^r               |
-   |                                     |
-   |------ H(password)^r ------------->|
-   |                                     |
-   |                    4. 用服务端密钥k处理
-   |                    5. 对数据库中每个元素
-   |                       计算 H(leaked_pwd)^k
-   |                                     |
-   |<----- {processed_elements} --------|
-   |                                     |
-   | 6. 去盲化: (H(password)^r)^k * r^(-k)
-   | 7. 检查是否匹配数据库中的元素       |
-   |                                     |
+客户端 服务端
+ | |
+ | 1. 哈希密码 |
+ | 2. 生成盲化因子 r |
+ | 3. 计算 H(password)^r |
+ | |
+ |------ H(password)^r ------------->|
+ | |
+ | 4. 用服务端密钥k处理
+ | 5. 对数据库中每个元素
+ | 计算 H(leaked_pwd)^k
+ | |
+ |<----- {processed_elements} --------|
+ | |
+ | 6. 去盲化: (H(password)^r)^k * r^(-k)
+ | 7. 检查是否匹配数据库中的元素 |
+ | |
 ```
 
 ## 密码学基础
@@ -56,21 +56,21 @@ b = 0x5ac635d8aa3a93e7b3ebbd55769886bc651d06b0cc53b0f63bce3c3e27d2604b
 
 ```python
 def hash_to_curve(data: bytes) -> ECPoint:
-    counter = 0
-    while counter < 256:
-        hash_input = data + counter.to_bytes(4, 'big')
-        h = sha256(hash_input).digest()
-        x = int.from_bytes(h, 'big') % p
-        
-        # 计算 y^2 = x^3 + ax + b (mod p)
-        y_squared = (x^3 + a*x + b) % p
-        
-        # 检查是否为二次剩余
-        if is_quadratic_residue(y_squared, p):
-            y = sqrt(y_squared, p)
-            return ECPoint(x, y)
-        
-        counter += 1
+ counter = 0
+ while counter < 256:
+ hash_input = data + counter.to_bytes(4, 'big')
+ h = sha256(hash_input).digest()
+ x = int.from_bytes(h, 'big') % p
+
+ # 计算 y^2 = x^3 + ax + b (mod p)
+ y_squared = (x^3 + a*x + b) % p
+
+ # 检查是否为二次剩余
+ if is_quadratic_residue(y_squared, p):
+ y = sqrt(y_squared, p)
+ return ECPoint(x, y)
+
+ counter += 1
 ```
 
 ### 盲化操作
@@ -86,13 +86,13 @@ def hash_to_curve(data: bytes) -> ECPoint:
 
 ### 隐私保护
 
-1. **客户端隐私**: 
-   - 服务端只接收到盲化后的元素 `r * H(password)`
-   - 由于不知道盲化因子 r，无法推导出原始密码
+1. **客户端隐私**:
+ - 服务端只接收到盲化后的元素 `r * H(password)`
+ - 由于不知道盲化因子 r，无法推导出原始密码
 
 2. **服务端隐私**:
-   - 客户端只能知道自己密码是否泄露
-   - 无法获取泄露数据库的其他信息
+ - 客户端只能知道自己密码是否泄露
+ - 无法获取泄露数据库的其他信息
 
 ### 安全假设
 
@@ -137,13 +137,13 @@ def hash_to_curve(data: bytes) -> ECPoint:
 ```
 src/
 ├── crypto/
-│   └── elliptic_curve.py     # 椭圆曲线密码学基础
+│ └── elliptic_curve.py # 椭圆曲线密码学基础
 ├── client/
-│   └── password_client.py    # 客户端实现
+│ └── password_client.py # 客户端实现
 ├── server/
-│   └── password_server.py    # 服务端实现
+│ └── password_server.py # 服务端实现
 └── common/
-    └── utils.py              # 通用工具函数
+ └── utils.py # 通用工具函数
 ```
 
 ### 关键算法实现
@@ -151,37 +151,37 @@ src/
 **椭圆曲线点运算**:
 ```python
 def point_add(P, Q):
-    # 椭圆曲线点加法
-    if P.is_infinity: return Q
-    if Q.is_infinity: return P
-    
-    if P.x == Q.x:
-        if P.y == Q.y:
-            return point_double(P)
-        else:
-            return INFINITY
-    
-    s = ((Q.y - P.y) * mod_inverse(Q.x - P.x, p)) % p
-    x3 = (s * s - P.x - Q.x) % p
-    y3 = (s * (P.x - x3) - P.y) % p
-    
-    return ECPoint(x3, y3)
+ # 椭圆曲线点加法
+ if P.is_infinity: return Q
+ if Q.is_infinity: return P
+
+ if P.x == Q.x:
+ if P.y == Q.y:
+ return point_double(P)
+ else:
+ return INFINITY
+
+ s = ((Q.y - P.y) * mod_inverse(Q.x - P.x, p)) % p
+ x3 = (s * s - P.x - Q.x) % p
+ y3 = (s * (P.x - x3) - P.y) % p
+
+ return ECPoint(x3, y3)
 ```
 
 **标量乘法优化**:
 ```python
 def point_multiply(k, P):
-    # 二进制展开法实现标量乘法
-    result = INFINITY
-    addend = P
-    
-    while k:
-        if k & 1:
-            result = point_add(result, addend)
-        addend = point_double(addend)
-        k >>= 1
-    
-    return result
+ # 二进制展开法实现标量乘法
+ result = INFINITY
+ addend = P
+
+ while k:
+ if k & 1:
+ result = point_add(result, addend)
+ addend = point_double(addend)
+ k >>= 1
+
+ return result
 ```
 
 ### 错误处理

@@ -41,8 +41,8 @@ async function main() {
  }
 
  try {
- console.log('📁 WASM file:', wasmPath);
- console.log('📁 Proving key:', zkeyPath);
+ console.log(' WASM file:', wasmPath);
+ console.log(' Proving key:', zkeyPath);
  console.log();
 
  // Generate sample inputs
@@ -108,7 +108,7 @@ async function main() {
  console.log('\n Proof Information:');
  console.log(' Public hash:', publicSignals[0]);
  console.log(' Private preimage: [HIDDEN]');
- console.log(` 📏 Proof size: ${JSON.stringify(proof).length} bytes`);
+ console.log(` Proof size: ${JSON.stringify(proof).length} bytes`);
  console.log(` Generation time: ${proofTime}ms`);
 
  // Quick verification

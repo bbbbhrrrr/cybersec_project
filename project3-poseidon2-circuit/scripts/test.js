@@ -9,11 +9,11 @@ const path = require('path');
  */
 
 async function main() {
- console.log('🧪 Running Poseidon2 Circuit Test Suite...\n');
+ console.log(' Running Poseidon2 Circuit Test Suite...\n');
 
  try {
  // Step 1: Compile circuit
- console.log('📦 Step 1: Compiling circuit...');
+ console.log(' Step 1: Compiling circuit...');
  execSync('node scripts/compile.js', {
  stdio: 'inherit',
  cwd: __dirname + '/..'
@@ -27,7 +27,7 @@ async function main() {
  });
 
  // Step 3: Run unit tests
- console.log('\n🧪 Step 3: Running unit tests...');
+ console.log('\n Step 3: Running unit tests...');
  execSync('npx mocha tests/poseidon2.test.js --reporter spec', {
  stdio: 'inherit',
  cwd: __dirname + '/..'

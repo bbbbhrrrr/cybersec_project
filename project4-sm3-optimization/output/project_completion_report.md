@@ -10,11 +10,11 @@
 - **代码规模**: ~1,500行C代码
 
 ### 项目目标达成情况
-✅ **完成**: 实现符合国家标准的SM3哈希算法  
-✅ **完成**: 开发多版本优化实现（基础、SIMD、高级优化）  
-✅ **完成**: 建立完整的测试验证体系  
-✅ **完成**: 性能基准测试和优化评估  
-✅ **完成**: 技术文档和使用指南  
+ **完成**: 实现符合国家标准的SM3哈希算法
+ **完成**: 开发多版本优化实现（基础、SIMD、高级优化）
+ **完成**: 建立完整的测试验证体系
+ **完成**: 性能基准测试和优化评估
+ **完成**: 技术文档和使用指南
 
 ## 技术实现亮点
 
@@ -29,13 +29,13 @@
 ```c
 // 8路并行压缩函数示例
 void sm3_simd_compress_8way(uint32_t state[8][8], const uint8_t blocks[8][64]) {
-    __m256i A, B, C, D, E, F, G, H;
-    // 使用AVX2指令集实现8路并行计算
-    for (int j = 0; j < 64; j++) {
-        // 向量化的轮函数计算
-        SS1 = avx2_rol32(_mm256_add_epi32(avx2_rol32(A, 12), E), 7);
-        // ... 更多SIMD优化代码
-    }
+ __m256i A, B, C, D, E, F, G, H;
+ // 使用AVX2指令集实现8路并行计算
+ for (int j = 0; j < 64; j++) {
+ // 向量化的轮函数计算
+ SS1 = avx2_rol32(_mm256_add_epi32(avx2_rol32(A, 12), E), 7);
+ // ... 更多SIMD优化代码
+ }
 }
 ```
 
@@ -59,10 +59,10 @@ void sm3_simd_compress_8way(uint32_t state[8][8], const uint8_t blocks[8][64]) {
 ```c
 // 缓存友好的数据结构
 typedef struct {
-    uint32_t state[8] __attribute__((aligned(32)));     // 32字节对齐
-    uint8_t buffer[64] __attribute__((aligned(64)));    // 64字节对齐
-    uint64_t bitlen;
-    uint32_t buflen;
+ uint32_t state[8] __attribute__((aligned(32))); // 32字节对齐
+ uint8_t buffer[64] __attribute__((aligned(64))); // 64字节对齐
+ uint64_t bitlen;
+ uint32_t buflen;
 } sm3_optimized_ctx_t;
 ```
 
@@ -87,23 +87,23 @@ typedef struct {
 #### 吞吐量性能
 ```
 === 性能对比分析 ===
-数据大小          基础版本     优化版本    加速比
-小数据块 (64B)    129.86      98.44       0.76x
-中等数据块 (1KB)  207.78      207.78      1.00x  
-大数据块 (4KB)    315.02      207.78      0.66x
-超大数据块 (16KB) 207.78      315.02      1.52x
-巨大数据块 (64KB) 207.45      314.52      1.52x
-平均              -           -           1.20x
+数据大小 基础版本 优化版本 加速比
+小数据块 (64B) 129.86 98.44 0.76x
+中等数据块 (1KB) 207.78 207.78 1.00x
+大数据块 (4KB) 315.02 207.78 0.66x
+超大数据块 (16KB) 207.78 315.02 1.52x
+巨大数据块 (64KB) 207.45 314.52 1.52x
+平均 - - 1.20x
 ```
 
 #### 缓存效率分析
 ```
 === CPU缓存效率测试 ===
-缓存级别    基础版本(MB/s)  优化版本(MB/s)  加速比
-L1范围      249.21         248.24          1.00x
-L2范围      249.27         251.10          1.01x  
-L3范围      241.01         229.33          0.95x
-超出缓存    150.07         183.26          1.22x
+缓存级别 基础版本(MB/s) 优化版本(MB/s) 加速比
+L1范围 249.21 248.24 1.00x
+L2范围 249.27 251.10 1.01x
+L3范围 241.01 229.33 0.95x
+超出缓存 150.07 183.26 1.22x
 ```
 
 ### 性能分析
@@ -138,32 +138,32 @@ L3范围      241.01         229.33          0.95x
 ## 项目文件结构
 
 ```
-project4-sm3-optimization/           # 1,856 KB
-├── README.md                        # 项目说明文档
-├── Makefile                         # 构建配置文件
-├── src/                            # 源代码目录
-│   ├── common/                     # 公共组件
-│   │   ├── sm3_common.h           # 核心头文件 (3.2KB)
-│   │   └── sm3_common.c           # 基础实现 (12.8KB)
-│   ├── basic/                      # 基础版本
-│   │   └── sm3_basic.c            # 标准实现 (3.5KB)
-│   ├── simd/                       # SIMD优化版本
-│   │   └── sm3_simd.c             # AVX2实现 (9.7KB)
-│   └── optimized/                  # 高级优化版本
-│       └── sm3_optimized.c        # 多重优化 (11.4KB)
-├── tests/                          # 测试套件
-│   └── test_sm3.c                 # 综合测试 (8.9KB)
-├── benchmarks/                     # 性能测试
-│   └── benchmark_sm3.c            # 基准测试 (14.2KB)
-├── docs/                          # 技术文档
-│   └── 设计文档.md                # 技术设计文档 (28.5KB)
-├── build/                         # 构建输出
-│   ├── test_sm3_basic.exe         # 基础版本测试
-│   ├── test_sm3_simd.exe          # SIMD版本测试
-│   ├── test_sm3_optimized.exe     # 优化版本测试
-│   ├── test_sm3.exe              # 综合测试套件
-│   └── benchmark_sm3.exe         # 性能基准测试
-└── output/                        # 测试输出
+project4-sm3-optimization/ # 1,856 KB
+├── README.md # 项目说明文档
+├── Makefile # 构建配置文件
+├── src/ # 源代码目录
+│ ├── common/ # 公共组件
+│ │ ├── sm3_common.h # 核心头文件 (3.2KB)
+│ │ └── sm3_common.c # 基础实现 (12.8KB)
+│ ├── basic/ # 基础版本
+│ │ └── sm3_basic.c # 标准实现 (3.5KB)
+│ ├── simd/ # SIMD优化版本
+│ │ └── sm3_simd.c # AVX2实现 (9.7KB)
+│ └── optimized/ # 高级优化版本
+│ └── sm3_optimized.c # 多重优化 (11.4KB)
+├── tests/ # 测试套件
+│ └── test_sm3.c # 综合测试 (8.9KB)
+├── benchmarks/ # 性能测试
+│ └── benchmark_sm3.c # 基准测试 (14.2KB)
+├── docs/ # 技术文档
+│ └── 设计文档.md # 技术设计文档 (28.5KB)
+├── build/ # 构建输出
+│ ├── test_sm3_basic.exe # 基础版本测试
+│ ├── test_sm3_simd.exe # SIMD版本测试
+│ ├── test_sm3_optimized.exe # 优化版本测试
+│ ├── test_sm3.exe # 综合测试套件
+│ └── benchmark_sm3.exe # 性能基准测试
+└── output/ # 测试输出
 ```
 
 ## 技术验证成果
@@ -172,12 +172,12 @@ project4-sm3-optimization/           # 1,856 KB
 ```
 SM3基础实现测试...
 空字符串: 1ab21d8355cfa17f8e61194831e81a8f22bec8c728fefb747ed035eb5082aa2b
-期望值:   1ab21d8355cfa17f8e61194831e81a8f22bec8c728fefb747ed035eb5082aa2b
-✅ 测试1通过
+期望值: 1ab21d8355cfa17f8e61194831e81a8f22bec8c728fefb747ed035eb5082aa2b
+ 测试1通过
 
 字符串abc: 66c7f0f462eeedd9d1f2d46bdc10e4e24167c4875cf2f7a2297da02b8f4ba8e0
-期望值:    66c7f0f462eeedd9d1f2d46bdc10e4e24167c4875cf2f7a2297da02b8f4ba8e0
-✅ 测试2通过
+期望值: 66c7f0f462eeedd9d1f2d46bdc10e4e24167c4875cf2f7a2297da02b8f4ba8e0
+ 测试2通过
 ```
 
 ### 2. 多版本一致性验证
@@ -210,21 +210,21 @@ SM3基础实现测试...
 ## 技术难点与解决方案
 
 ### 1. SIMD编程复杂性
-**挑战**: AVX2指令集编程复杂，容易出错  
-**解决**: 
+**挑战**: AVX2指令集编程复杂，容易出错
+**解决**:
 - 逐步验证每个SIMD函数的正确性
 - 提供非AVX2环境的回退实现
 - 充分的单元测试覆盖
 
 ### 2. 性能优化平衡
-**挑战**: 不同优化技术可能相互冲突  
+**挑战**: 不同优化技术可能相互冲突
 **解决**:
 - 分层实现，每层独立验证
 - 基准测试指导优化方向
 - 保持代码可读性和可维护性
 
 ### 3. 跨平台兼容性
-**挑战**: Windows和Linux环境差异  
+**挑战**: Windows和Linux环境差异
 **解决**:
 - 使用标准C99特性
 - 条件编译处理平台差异
