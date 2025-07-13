@@ -8,8 +8,14 @@ SM2数字签名算法基础实现
 import random
 import hashlib
 from typing import Tuple, Union, Optional
-from .ecc_math import SM2Curve, ECCPoint
-from .sm3_hash import sm3_hash
+
+# 修复导入问题
+try:
+    from .ecc_math import SM2Curve, ECCPoint
+    from .sm3_hash import sm3_hash
+except ImportError:
+    from ecc_math import SM2Curve, ECCPoint
+    from sm3_hash import sm3_hash
 
 
 class SM2Signature:
