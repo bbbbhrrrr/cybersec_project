@@ -141,12 +141,13 @@ Test Cases: ~200个测试用例
 ```
 Programming Languages Distribution:
 ┌─────────────────────────────────────────┐
-│ C/C++        ████████████████░░ 40%     │
-│ Python       ████████████░░░░░░ 25%     │  
-│ JavaScript   ████████░░░░░░░░░░ 20%     │
-│ Circom       ████░░░░░░░░░░░░░░ 10%     │
-│ Solidity     █░░░░░░░░░░░░░░░░░  3%     │
-│ Other        █░░░░░░░░░░░░░░░░░  2%     │
+│ Python       ████████████████░░ 31.4%   │
+│ Assembly     ████████████░░░░░░ 25.5%   │  
+│ C            ████████░░░░░░░░░░ 17.2%   │
+│ C++          █████░░░░░░░░░░░░░ 11.9%   │
+│ JavaScript   █████░░░░░░░░░░░░░ 10.9%   │
+│ Circom       █░░░░░░░░░░░░░░░░░  1.1%   │
+│ Other        █░░░░░░░░░░░░░░░░░  2.0%   │
 └─────────────────────────────────────────┘
 ```
 
@@ -511,19 +512,20 @@ sm3_optimized_hash(file_data, sizeof(file_data), hash);
 ```
 Total Files: ~150个源文件
 Total Lines: ~15,000行代码
-Languages: C/C++, Python, JavaScript, Circom, Solidity
+Languages: Python, Assembly, C, C++, JavaScript, Circom
 Documentation: ~50页技术文档
 Test Cases: ~200个测试用例
 ```
 
 ### 技术栈分布
 ```
-C/C++: 40% (性能关键算法)
-Python: 25% (图像处理和分析)
-JavaScript: 20% (零知识证明工具链)
-Circom: 10% (电路描述语言)
-Solidity: 3% (智能合约)
-Shell/Make: 2% (构建脚本)
+Python:       31.4% (图像处理、密码学协议、算法实现)
+Assembly:     25.5% (SIMD优化、底层性能加速)
+C:            17.2% (SM4/SM3密码算法核心实现)
+C++:          11.9% (高性能算法优化)
+JavaScript:   10.9% (零知识证明工具链)
+Circom:        1.1% (电路描述语言)
+Other:         2.0% (构建脚本、配置文件)
 ```
 
 ### 项目成熟度
