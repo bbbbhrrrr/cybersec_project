@@ -85,26 +85,26 @@
 ```
 CyberSec Project Architecture
 ┌─────────────────────────────────────────────────────────────────┐
-│ Application Layer │
+│                     Application Layer                           │
 ├─────────────────────────────────────────────────────────────────┤
-│ Digital Secure Privacy Blockchain │
-│ Watermark Communication Computing Applications │
+│  Digital       Secure        Privacy         Blockchain         │
+│  Watermark     Communication Computing       Applications       │
 ├─────────────────────────────────────────────────────────────────┤
-│ Algorithm Layer │
+│                    Algorithm Layer                              │
 ├─────────────────────────────────────────────────────────────────┤
-│ Project2 Project1 Project4 Project3 Project5│
-│ Image SM4 SM3 Poseidon2 SM2 │
-│ Watermark Optimization Optimization ZK Circuit Signature│
+│ Project2   Project1   Project4   Project3   Project5   Project6│
+│ Image      SM4        SM3        Poseidon2   SM2        Password│
+│ Watermark  Optimize   Optimize   ZK Circuit  Signature  Checkup │
 ├─────────────────────────────────────────────────────────────────┤
-│ Optimization Layer │
+│                   Optimization Layer                           │
 ├─────────────────────────────────────────────────────────────────┤
-│ SIMD/AVX2 Algorithm Memory Circuit │
-│ Acceleration Optimization Optimization Optimization │
+│ SIMD/AVX2      Algorithm      Memory         Circuit           │
+│ Acceleration   Optimization   Optimization   Optimization      │
 ├─────────────────────────────────────────────────────────────────┤
-│ Platform Layer │
+│                    Platform Layer                              │
 ├─────────────────────────────────────────────────────────────────┤
-│ Windows/Linux x86_64/ARM CPU/GPU Node.js/Browser │
-│ Cross-Platform Multi-Arch Hardware JavaScript VM │
+│ Windows/Linux  x86_64/ARM     CPU/GPU        Node.js/Browser   │
+│ Cross-Platform Multi-Arch     Hardware       JavaScript VM     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -141,12 +141,12 @@ Test Cases: ~200个测试用例
 ```
 Programming Languages Distribution:
 ┌─────────────────────────────────────────┐
-│ C/C++ ████████████████░░ 40% │
-│ Python ████████████░░░░░░ 25% │
-│ JavaScript ████████░░░░░░░░░░ 20% │
-│ Circom ████░░░░░░░░░░░░░░ 10% │
-│ Solidity █░░░░░░░░░░░░░░░░░ 3% │
-│ Other █░░░░░░░░░░░░░░░░░ 2% │
+│ C/C++        ████████████████░░ 40%     │
+│ Python       ████████████░░░░░░ 25%     │  
+│ JavaScript   ████████░░░░░░░░░░ 20%     │
+│ Circom       ████░░░░░░░░░░░░░░ 10%     │
+│ Solidity     █░░░░░░░░░░░░░░░░░  3%     │
+│ Other        █░░░░░░░░░░░░░░░░░  2%     │
 └─────────────────────────────────────────┘
 ```
 
@@ -154,10 +154,10 @@ Programming Languages Distribution:
 ```
 Technology Stack Coverage:
 ┌─────────────────────────────────────────┐
-│ Cryptography ████████████████████ 50% │
-│ Optimization ████████████░░░░░░░░ 30% │
-│ ZK/Blockchain ███████░░░░░░░░░░░ 15% │
-│ Image Processing ██░░░░░░░░░░░░░ 5% │
+│ Cryptography ████████████████████ 50%   │
+│ Optimization ████████████░░░░░░░░ 30%   │
+│ ZK/Blockchain ███████░░░░░░░░░░░ 15%    │
+│ Image Processing ██░░░░░░░░░░░░░  5%    │
 └─────────────────────────────────────────┘
 ```
 
