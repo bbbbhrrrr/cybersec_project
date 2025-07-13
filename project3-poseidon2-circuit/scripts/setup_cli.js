@@ -19,7 +19,7 @@ async function main() {
     const r1csPath = path.join(buildDir, 'poseidon2.r1cs');
 
     if (!fs.existsSync(r1csPath)) {
-        console.error('‚ù?R1CS file not found. Please run compile script first.');
+        console.error('ÔøΩ?R1CS file not found. Please run compile script first.');
         process.exit(1);
     }
 
@@ -36,7 +36,7 @@ async function main() {
         const zkeyFinalPath = path.join(setupDir, 'poseidon2_final.zkey');
         const vkeyPath = path.join(setupDir, 'verification_key.json');
 
-        console.log('‚ö?Phase 1: Powers of Tau ceremony...');
+        console.log('ÔøΩ?Phase 1: Powers of Tau ceremony...');
         
         // Phase 1
         console.log('  üîÑ Starting new ceremony...');
@@ -49,7 +49,7 @@ async function main() {
         execSync(`npx snarkjs pt2 "${ptauPath1}" "${ptauFinalPath}" -v`, { stdio: 'inherit' });
 
         // Phase 2
-        console.log('‚ö?Phase 2: Circuit-specific setup...');
+        console.log('ÔøΩ?Phase 2: Circuit-specific setup...');
         
         console.log('  üîë Generating initial zkey...');
         execSync(`npx snarkjs g16s "${r1csPath}" "${ptauFinalPath}" "${zkeyPath}"`, { stdio: 'inherit' });
@@ -60,11 +60,11 @@ async function main() {
         console.log('  üì§ Exporting verification key...');
         execSync(`npx snarkjs zkev "${zkeyFinalPath}" "${vkeyPath}"`, { stdio: 'inherit' });
 
-        console.log('\n‚ú?Trusted setup completed!');
+        console.log('\nÔøΩ?Trusted setup completed!');
         console.log('\nGenerated files:');
         console.log(' üîë poseidon2_final.zkey - Final proving key');
         console.log(' üîì verification_key.json - Verification key');
-        console.log(' ‚ö?powersOfTauFinal.ptau - Universal setup');
+        console.log(' ÔøΩ?powersOfTauFinal.ptau - Universal setup');
 
         // Show verification key info
         if (fs.existsSync(vkeyPath)) {
@@ -85,7 +85,7 @@ async function main() {
         });
 
     } catch (error) {
-        console.error('‚ù?Setup failed:');
+        console.error('ÔøΩ?Setup failed:');
         console.error(error.message);
         process.exit(1);
     }

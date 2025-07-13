@@ -25,7 +25,7 @@ async function main() {
     const simpleZkeyPath = path.join(setupDir, 'poseidon2_simple_final.zkey');
     
     if (!fs.existsSync(simpleZkeyPath)) {
-        console.error('‚ù?Simple setup not found. Please run setup first.');
+        console.error('ÔøΩ?Simple setup not found. Please run setup first.');
         process.exit(1);
     }
 
@@ -72,7 +72,7 @@ async function main() {
         fs.writeFileSync(publicPath, JSON.stringify(publicSignals, null, 2));
         fs.writeFileSync(inputPath, JSON.stringify(input, null, 2));
 
-        console.log('\n‚ú?Proof generated successfully!');
+        console.log('\nÔøΩ?Proof generated successfully!');
         console.log('\nGenerated files:');
         console.log(' üìÑ proof_simple.json - Zero-knowledge proof');
         console.log(' üìÑ public_simple.json - Public inputs');
@@ -91,7 +91,7 @@ async function main() {
         if (fs.existsSync(vKeyPath)) {
             const vKey = JSON.parse(fs.readFileSync(vKeyPath));
             const isValid = await snarkjs.groth16.verify(vKey, publicSignals, proof);
-            console.log(` Proof is ${isValid ? '‚ú?VALID' : '‚ù?INVALID'}`);
+            console.log(` Proof is ${isValid ? 'ÔøΩ?VALID' : 'ÔøΩ?INVALID'}`);
         } else {
             console.log(' ‚ö†Ô∏è  Verification key not found, skipping verification');
         }
@@ -101,7 +101,7 @@ async function main() {
         console.log('without revealing the actual values!');
 
     } catch (error) {
-        console.error('‚ù?Proof generation failed:');
+        console.error('ÔøΩ?Proof generation failed:');
         console.error(error.message);
         process.exit(1);
     }
