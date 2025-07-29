@@ -67,15 +67,6 @@ project1-sm4-optimization/
 ├── build.bat                   # Windows构建脚本
 └── README.md                   # 项目说明文档
 ```
-├── benchmarks/            # 性能测试
-│   ├── benchmark.c        # 基本性能测试
-│   ├── benchmark_simd.c   # SIMD性能测试
-│   └── benchmark_comprehensive.c  # 综合性能测试
-├── build/                 # 构建输出目录
-├── docs/                  # 文档目录
-├── Makefile              # 构建脚本
-└── README.md             # 项目说明
-```
 
 ## 技术特性
 

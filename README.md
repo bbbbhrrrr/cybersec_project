@@ -119,6 +119,7 @@ cybersec_project/
 ├── docs/                           # 项目文档
 ├── output/                         # 输出报告
 └── README.md                       # 项目说明
+```
 ## 技术栈与工具
 
 ### 编程语言
@@ -140,6 +141,7 @@ cybersec_project/
 - **算法优化**: 查表法、预计算、循环展开
 - **密码学标准**: 国产密码算法标准实现
 - **性能分析**: 详细的基准测试和性能分析
+
 ## 项目统计
 
 ### 代码规模
@@ -267,14 +269,6 @@ cd project6-password-checkup
 pip install -r requirements.txt
 python demo.py             # 协议演示
 python benchmarks/performance_benchmark.py  # 性能测试
-```
-
-### Project 6: Password Checkup协议
-```bash
-cd project6-password-checkup
-pip install -r requirements.txt
-python demo.py # 运行协议演示
-python benchmarks/performance_benchmark.py # 性能测试
 python tests/test_password_checkup.py # 协议验证
 ```
 
@@ -412,12 +406,6 @@ python tests/test_password_checkup.py # 协议验证
 - IEEE 数字水印相关标准
 - zk-SNARKs 协议规范文档
 
-### 开发指南
-- 环境配置和编译部署指南
-- 性能测试和优化指南
-- 安全实践和最佳实践
-- 跨平台部署指南
-
 ## 使用案例
 
 ### 高性能数据加密
@@ -454,58 +442,6 @@ const proof = await prove(witness);
 const isValid = await verify(proof);
 // 1.5秒证明生成，8ms验证时间
 ```
-
-## 应用领域
-
-### 金融科技
-- 高性能加密通信
-- 数字签名验证
-- 区块链隐私保护
-- 密码安全检查
-
-### 政府信息化
-- 国产密码算法应用
-- 文档数字水印
-- 安全通信保障
-- 数据完整性验证
-
-### 区块链与Web3
-- 零知识证明应用
-- 隐私计算协议
-- 智能合约验证
-- 去中心化身份认证
-
-### 数字内容保护
-- 图像版权保护
-- 视频水印技术
-- 音频防盗版
-- 文档溯源追踪
-SIMD优化: 350 MB/s (3.5x加速)
-查表优化: 280 MB/s (2.8x加速)
-```
-
-### SM3算法优化性能
-```
-基础实现: 211 MB/s
-优化实现: 251 MB/s (1.19x加速)
-大数据场景: 1.52x加速 (16KB+)
-```
-
-### 图像水印系统性能
-```
-图像质量: PSNR 51.2 dB
-鲁棒性: 78% (37种攻击测试)
-处理速度: 0.8秒/图像 (512×512)
-```
-
-### Poseidon2零知识证明性能
-```
-电路约束: 1,156个 (vs SHA-256: 27,904个)
-证明时间: 1.5秒
-验证时间: 8ms
-约束减少: 95.9%
-```
-
 ## 文档结构
 
 每个项目都包含完整的技术文档和实现：
@@ -548,166 +484,3 @@ projectX-name/
 - **API文档**: 完整的接口文档和使用示例
 - **用户指南**: 详细的安装配置和使用教程
 - **实验报告**: 完整的实验数据和分析结果
-
-## 使用案例
-
-### 1. 高性能加密通信
-```c
-// 使用SM4算法进行高速数据加密
-#include "sm4_simd.h"
-
-uint8_t key[16] = {...};
-uint8_t plaintext[1024] = {...};
-uint8_t ciphertext[1024];
-
-sm4_simd_encrypt_ecb(plaintext, ciphertext, 1024, key);
-// 实现3-4倍加速的加密性能
-```
-
-### 2. 数字版权保护
-```python
-# 图像数字水印嵌入和提取
-from watermark import WatermarkSystem
-
-ws = WatermarkSystem(strength=30)
-watermarked_image = ws.embed_watermark(original_image, watermark_text)
-extracted_text = ws.extract_watermark(watermarked_image)
-# 达到51dB图像质量和78%鲁棒性
-```
-
-### 3. 隐私计算证明
-```javascript
-// 零知识证明生成和验证
-const { prove, verify } = require('./zk-system');
-
-const witness = { secret: 12345, hash: "0x..." };
-const proof = await prove(witness);
-const isValid = await verify(proof);
-// 1.5秒证明生成，8ms验证时间
-```
-
-### 4. 文件完整性校验
-```c
-// 使用SM3算法进行文件哈希
-#include "sm3_optimized.h"
-
-uint8_t file_data[1024*1024];
-uint8_t hash[32];
-
-sm3_optimized_hash(file_data, sizeof(file_data), hash);
-// 实现1.2-1.8倍性能提升
-```
-
-## 项目统计
-
-### 代码规模
-```
-Total Files: ~150个源文件
-Total Lines: ~15,000行代码
-Languages: Python, Assembly, C, C++, JavaScript, Circom
-Documentation: ~50页技术文档
-Test Cases: ~200个测试用例
-```
-
-### 技术栈分布
-```
-Python:       31.4% (图像处理、密码学协议、算法实现)
-Assembly:     25.5% (SIMD优化、底层性能加速)
-C:            17.2% (SM4/SM3密码算法核心实现)
-C++:          11.9% (高性能算法优化)
-JavaScript:   10.9% (零知识证明工具链)
-Circom:        1.1% (电路描述语言)
-Other:         2.0% (构建脚本、配置文件)
-```
-
-### 项目成熟度
-```
-Project 1 (SM4): 生产就绪
-Project 2 (水印): 生产就绪
-Project 3 (Poseidon): 生产就绪
-Project 4 (SM3): 生产就绪
-整体集成: 持续完善
-```
-
-## 环境要求
-
-### 通用要求
-- **操作系统**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
-- **内存**: 最低8GB，推荐16GB+ (零知识证明需要更多内存)
-- **存储**: 至少10GB可用空间 (包含所有项目和依赖)
-- **网络**: 用于下载依赖包和工具链
-
-### 项目特定要求
-
-#### Project 1 & 4 (SM4/SM3优化)
-- **处理器**: 支持AVX2的x86_64处理器 (Intel Haswell+, AMD Excavator+)
-- **编译器**: GCC 7.0+, MSVC 2017+, Clang 6.0+
-- **工具**: Make, CMake (可选)
-
-#### Project 2 (图像水印)
-- **Python**: 3.8+ (推荐3.9+)
-- **依赖库**: OpenCV 4.5+, NumPy, Matplotlib, Pillow
-- **图像格式**: 支持PNG, JPEG, BMP等常见格式
-
-#### Project 3 (零知识证明)
-- **Node.js**: 16.0+ (推荐18.0+)
-- **Rust**: 1.60+ (用于circom编译)
-- **内存**: 最低4GB可用内存用于证明生成
-- **工具**: circom 2.1.6+, snarkjs 0.6.11+
-
-### 硬件推荐配置
-- **CPU**: Intel i7-8700K / AMD Ryzen 7 3700X 或更高
-- **内存**: 32GB DDR4 (用于大规模零知识证明)
-- **存储**: SSD固态硬盘 (提升编译和测试速度)
-- **显卡**: 可选，未来GPU加速版本使用
-
-## 贡献指南
-
-### 参与方式
-欢迎对项目进行改进和扩展，共同推进密码学技术发展！
-
-#### 代码贡献
-- **性能优化**: 算法优化、SIMD增强、GPU加速实现
-- **功能扩展**: 新算法实现、创新特性开发
-- **平台支持**: ARM架构、移动端、嵌入式适配
-- **安全增强**: 侧信道防护、形式化验证集成
-
-#### 文档贡献
-- **技术文档**: 算法原理详解、实现细节深度分析
-- **使用教程**: 入门指南、最佳实践分享
-- **API文档**: 接口说明、示例代码完善
-- **国际化**: 英文文档、多语言支持
-
-## 技术发展方向
-
-### 算法扩展
-- 后量子密码学算法研究与实现
-- 同态加密技术应用
-- 多方安全计算协议
-- 轻量级物联网密码学
-
-### 性能优化
-- GPU并行计算加速
-- ARM架构适配优化
-- 硬件安全模块集成
-- 边缘计算部署优化
-
-### 应用拓展
-- 区块链隐私保护解决方案
-- 云端密文计算服务
-- 移动端安全SDK
-- 工业互联网安全应用
-
-## 许可证
-
-本项目采用MIT许可证，详见各子项目的LICENSE文件。
-
-## 项目标签
-
-密码学 | SM4 | SM3 | SM2 | SIMD优化 | 数字水印 | 零知识证明 | Poseidon2 | 性能优化 | 椭圆曲线密码 | 隐私计算
-
----
-
-**网络安全密码学项目集合 - 构建安全可信的数字世界**
-
-最后更新: 2024年12月
