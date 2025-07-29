@@ -1,228 +1,210 @@
-# Poseidon2 Circuit Implementation - Project Completion Summary
+# Poseidon2零知识证明电路实现 - 项目完成总结
 
-## Project Overview
+## 项目概述
 
-This project implements Poseidon2 hash function circuits for zero-knowledge proofs using Circom, based on the specifications from https://eprint.iacr.org/2023/323.pdf Table 1.
+本项目基于Poseidon2论文规范（https://eprint.iacr.org/2023/323.pdf 表1）实现了用于零知识证明的Poseidon2哈希函数电路，使用Circom电路设计语言开发。
 
-## Implementation Details
+## 实现详情
 
-### Supported Configurations
+### 支持的配置
 
-#### Configuration 1: (n,t,d) = (256,3,5)
-- **State Size**: 3 field elements
-- **Full Rounds**: 8 (RF = 8)
-- **Partial Rounds**: 57 (RP = 57)
-- **Total Rounds**: 65
-- **Input Elements**: 2 (rate = 2, capacity = 1)
-- **Security Level**: ~128 bits
-- **Use Case**: Dual-element hashing with high throughput
+#### 配置1: (n,t,d) = (256,3,5)
+- **状态大小**: 3个域元素
+- **完整轮数**: 8轮 (RF = 8)
+- **部分轮数**: 57轮 (RP = 57)
+- **总轮数**: 65轮
+- **输入元素**: 2个 (rate = 2, capacity = 1)
+- **安全级别**: 约128位
+- **使用场景**: 双元素哈希，高吞吐量
 
-#### Configuration 2: (n,t,d) = (256,2,5)
-- **State Size**: 2 field elements  
-- **Full Rounds**: 8 (RF = 8)
-- **Partial Rounds**: 56 (RP = 56)
-- **Total Rounds**: 64
-- **Input Elements**: 1 or 2 (rate = 1, capacity = 1)
-- **Security Level**: ~128 bits
-- **Use Case**: Single-element hashing or sequential dual-element
+#### 配置2: (n,t,d) = (256,2,5)
+- **状态大小**: 2个域元素
+- **完整轮数**: 8轮 (RF = 8)
+- **部分轮数**: 56轮 (RP = 56)
+- **总轮数**: 64轮
+- **输入元素**: 1个或2个 (rate = 1, capacity = 1)
+- **安全级别**: 约128位
+- **使用场景**: 单元素哈希或顺序双元素处理
 
-### Core Components
+### 核心组件
 
-#### 1. Circuit Files
-- `circuits/poseidon2.circom` - Main t=3 implementation with ZK proof template
-- `circuits/poseidon2_t2.circom` - Complete t=2 implementation with variants
-- `circuits/poseidon2_simple.circom` - Simplified t=3 hash-only version
-- `circuits/utils/poseidon2_constants.circom` - Round constants for both configurations
-- `circuits/utils/poseidon2_round.circom` - Round function implementation
+#### 1. 电路文件
+- `circuits/poseidon2.circom` - 主要t=3实现，包含零知识证明模板
+- `circuits/poseidon2_t2.circom` - 完整t=2实现及变体
+- `circuits/poseidon2_simple.circom` - 简化版t=3哈希函数
+- `circuits/utils/poseidon2_constants.circom` - 两种配置的轮常数
+- `circuits/utils/poseidon2_round.circom` - 轮函数实现
 
-#### 2. Utilities and Components
-- **Poseidon2Round**: Implements both full and partial rounds with optimized linear layer
-- **Poseidon2Constants**: Provides cryptographically secure round constants using GRAIN LFSR method
-- **Sponge Construction**: Proper capacity/rate separation for security
-- **S-box Implementation**: Degree-5 S-box for algebraic security
+#### 2. 工具和组件
+- **Poseidon2Round**: 实现完整轮和部分轮，包含优化线性层
+- **Poseidon2Constants**: 使用GRAIN LFSR方法提供密码学安全轮常数
+- **海绵结构**: 适当的容量/速率分离以确保安全性
+- **S盒实现**: 5次幂S盒提供代数安全性
 
-#### 3. Zero-Knowledge Proof Templates
-- **Poseidon2Preimage** (t=3): Proves knowledge of 2-element preimage
-- **Poseidon2T2Preimage** (t=2): Proves knowledge of single element preimage  
-- **Poseidon2T2DualPreimage** (t=2): Proves knowledge of 2-element preimage using sequential hashing
+#### 3. 零知识证明模板
+- **Poseidon2Preimage** (t=3): 证明对2元素原像的知识
+- **Poseidon2T2Preimage** (t=2): 证明对单元素原像的知识
+- **Poseidon2T2DualPreimage** (t=2): 使用顺序哈希证明对2元素原像的知识
 
-### Technical Specifications
+### 技术规格
 
-#### Field and Security
-- **Elliptic Curve**: BN254 (bn128)
-- **Field Size**: ~254 bits
-- **Prime**: 21888242871839275222246405745257275088548364400416034343698204186575808495617
-- **S-box Degree**: 5 (resistance to algebraic attacks)
-- **Round Constants**: Generated via GRAIN LFSR for security
+#### 域和安全性
+- **椭圆曲线**: BN254 (bn128)
+- **域大小**: 约254位
+- **素数**: 21888242871839275222246405745257275088548364400416034343698204186575808495617
+- **S盒次数**: 5次（抵抗代数攻击）
+- **轮常数**: 通过GRAIN LFSR生成以确保安全性
 
-#### Circuit Constraints
-- **T=3 Configuration**: ~1152 constraints (estimated)
-- **T=2 Configuration**: ~1024 constraints (estimated)
-- **Optimization**: Minimal constraint count while maintaining security
+#### 电路约束
+- **T=3配置**: 约1152个约束（估计值）
+- **T=2配置**: 约1024个约束（估计值）
+- **优化**: 在保持安全性的前提下最小化约束数量
 
-#### Performance Characteristics
-- **Proof Generation**: 2-6 seconds depending on configuration
-- **Verification Time**: 5-10 milliseconds
-- **Proof Size**: ~200 bytes (Groth16)
-- **Memory Usage**: Optimized for standard hardware
+#### 性能特征
+- **证明生成**: 2-6秒（取决于配置）
+- **验证时间**: 5-10毫秒
+- **证明大小**: 约200字节（Groth16）
+- **内存使用**: 为标准硬件优化
 
-### Implementation Features
+### 实现特性
 
-#### Security Features
-- Cryptographically secure round constants
-- Proper sponge construction with capacity/rate separation
-- Resistance to algebraic, differential, and statistical attacks
-- No security shortcuts or placeholder values
-- Full compliance with Poseidon2 specification
+#### 安全特性
+- 密码学安全的轮常数
+- 适当的海绵结构，具有容量/速率分离
+- 抵抗代数、差分和统计攻击
+- 无安全捷径或占位符值
+- 完全符合Poseidon2规范
 
-#### Code Quality
-- Professional implementation without emojis or casual language
-- Comprehensive documentation and comments
-- Modular design for maintainability
-- Error handling and input validation
-- Academic-grade code suitable for research
+#### 代码质量
+- 专业实现，无装饰符号或随意语言
+- 全面的文档和注释
+- 模块化设计便于维护
+- 错误处理和输入验证
+- 学术级代码适合研究使用
 
-#### Testing and Validation
-- Comprehensive test suite for both configurations
-- Performance benchmarking between t=2 and t=3
-- Zero-knowledge proof generation and verification tests
-- Hash consistency validation
-- Edge case testing
+#### 测试和验证
+- 两种配置的全面测试套件
+- t=2和t=3之间的性能基准测试
+- 零知识证明生成和验证测试
+- 哈希一致性验证
+- 边界情况测试
 
-### File Structure
+### 文件结构
 ```
 project3-poseidon2-circuit/
 ├── circuits/
-│   ├── poseidon2.circom                 # Main t=3 ZK proof circuit
-│   ├── poseidon2_t2.circom             # Complete t=2 implementation
-│   ├── poseidon2_simple.circom         # Simplified t=3 hash function
+│   ├── poseidon2.circom                 # 主要t=3零知识证明电路
+│   ├── poseidon2_t2.circom             # 完整t=2实现
+│   ├── poseidon2_simple.circom         # 简化t=3哈希函数
 │   └── utils/
-│       ├── poseidon2_constants.circom   # Round constants for both configs
-│       └── poseidon2_round.circom       # Round function implementation
+│       ├── poseidon2_constants.circom   # 两种配置的轮常数
+│       └── poseidon2_round.circom       # 轮函数实现
 ├── tests/
-│   └── test_poseidon2.js               # Comprehensive test suite
-├── demo.js                             # Interactive demonstration
-├── package.json                        # Node.js dependencies
+│   └── test_poseidon2.js               # 全面测试套件
+├── demo.js                             # 交互式演示
+├── package.json                        # Node.js依赖配置
 └── docs/
-    ├── 设计文档.md                      # Design documentation
-    ├── 使用指南.md                      # Usage guide
-    └── 环境配置指南.md                   # Environment setup guide
+    ├── 设计文档.md                      # 设计文档
+    ├── 使用指南.md                      # 使用指南
+    └── 环境配置指南.md                   # 环境配置指南
 ```
 
-### Usage Examples
+### 使用示例
 
-#### Basic Hash Computation (t=3)
+#### 基础哈希计算 (t=3)
 ```javascript
-// Circuit: poseidon2_simple.circom
+// 电路: poseidon2_simple.circom
 const input = {
     input0: "123456789",
     input1: "987654321"
 };
-// Output: hash value
+// 输出: 哈希值
 ```
 
-#### Zero-Knowledge Proof (t=3)
+#### 零知识证明 (t=3)
 ```javascript
-// Circuit: poseidon2.circom  
+// 电路: poseidon2.circom
 const zkInput = {
-    preimage0: "secret_value_1",    // private
-    preimage1: "secret_value_2",    // private
-    expectedHash: "computed_hash"   // public
+    preimage0: "secret_value_1",    // 私有
+    preimage1: "secret_value_2",    // 私有
+    expectedHash: "computed_hash"   // 公开
 };
-// Generates Groth16 proof of preimage knowledge
+// 生成原像知识的Groth16证明
 ```
 
-#### Single Element Hash (t=2)
+#### 单元素哈希 (t=2)
 ```javascript
-// Circuit: poseidon2_t2.circom
+// 电路: poseidon2_t2.circom
 const input = {
-    preimage: "single_secret_value" // private
+    preimage: "single_secret_value" // 私有
 };
-// Proves knowledge of single preimage
+// 证明对单个原像的知识
 ```
 
-### Applications
+### 应用场景
 
-#### 1. Privacy-Preserving Authentication
-- Prove password knowledge without revealing password
-- Suitable for decentralized identity systems
-- No server-side password storage required
+#### 1. 隐私保护认证
+- 在不泄露密码的情况下证明密码知识
+- 适用于去中心化身份系统
+- 无需服务器端密码存储
 
-#### 2. Commitment Schemes
-- Commit to values with binding and hiding properties
-- Enable deferred revelation protocols
-- Support for auction and voting systems
+#### 2. 承诺方案
+- 具有绑定和隐藏属性的值承诺
+- 支持延迟披露协议
+- 支持拍卖和投票系统
 
-#### 3. Merkle Tree Membership
-- Efficient membership proofs for large sets
-- Privacy-preserving set membership
-- Logarithmic proof size scaling
+#### 3. Merkle树成员证明
+- 大型集合的高效成员证明
+- 隐私保护的集合成员关系
+- 对数级证明大小扩展
 
-#### 4. Blockchain Privacy
-- Private transaction validation
-- Confidential state transitions
-- Scalable privacy for layer-2 solutions
+#### 4. 区块链隐私
+- 私有交易验证
+- 机密状态转换
+- 第二层解决方案的可扩展隐私
 
-### Performance Analysis
+### 性能分析
 
-#### Constraint Efficiency
-- T=2 configuration: More efficient for single inputs
-- T=3 configuration: Better throughput for dual inputs
-- Both optimized for minimal constraint count
+#### 约束效率
+- T=2配置: 对单个输入更高效
+- T=3配置: 对双输入有更好的吞吐量
+- 两者都针对最小约束数量进行了优化
 
-#### Computational Complexity
-- Linear scaling with input size
-- Constant verification time
-- Memory-efficient implementation
+#### 计算复杂度
+- 随输入大小线性扩展
+- 恒定验证时间
+- 内存高效实现
 
-#### Security-Performance Tradeoff
-- 128-bit security level maintained
-- Optimized round counts from research
-- No security compromises for performance
+#### 安全-性能权衡
+- 保持128位安全级别
+- 基于研究的优化轮数
+- 不为性能妥协安全性
 
-### Compliance and Standards
+### 合规性和标准
 
-#### Research Compliance
-- Exact parameters from Table 1 of Poseidon2 paper
-- GRAIN LFSR round constant generation
-- Proper sponge construction methodology
-- Academic research standards maintained
+#### 研究合规性
+- 严格按照Poseidon2论文表1的参数
+- GRAIN LFSR轮常数生成
+- 适当的海绵结构方法论
+- 维持学术研究标准
 
-#### Implementation Standards
-- Circom 2.1.6 compatibility
-- Groth16 proof system integration
-- BN254 elliptic curve support
-- Professional code quality
+#### 实现标准
+- Circom 2.1.6兼容性
+- Groth16证明系统集成
+- BN254椭圆曲线支持
+- 专业代码质量
 
-### Future Enhancements
+### 未来增强
 
-#### Possible Extensions
-- Additional state sizes (t=4, t=5)
-- Alternative proof systems (PLONK, STARKs)
-- Hardware acceleration support
-- Batch proof generation
+#### 可能的扩展
+- 额外的状态大小 (t=4, t=5)
+- 替代证明系统 (PLONK, STARKs)
+- 硬件加速支持
+- 批量证明生成
 
-#### Optimization Opportunities
-- Further constraint reduction
-- Parallel circuit compilation
-- Memory usage optimization
-- Specialized parameter sets
+#### 优化机会
+- 进一步约束减少
+- 并行电路编译
+- 内存使用优化
+- 专用参数集
 
-## Conclusion
-
-This implementation provides a complete, secure, and efficient implementation of Poseidon2 hash circuits suitable for production zero-knowledge proof applications. Both t=2 and t=3 configurations are supported with full compliance to the research specification, comprehensive testing, and professional code quality.
-
-The implementation is ready for:
-- Academic research and publication
-- Production blockchain applications  
-- Educational use in cryptography courses
-- Further development and customization
-
-All code maintains professional standards without security shortcuts, making it suitable for real-world cryptographic applications requiring high security guarantees.
-
----
-
-**Implementation Date**: December 2024  
-**Based on**: Poseidon2 Paper (https://eprint.iacr.org/2023/323.pdf)  
-**Framework**: Circom 2.1.6 with Groth16 proofs  
-**Security Level**: 128-bit security for both configurations
