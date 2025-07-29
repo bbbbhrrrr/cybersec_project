@@ -7,8 +7,25 @@
 
 /**
  * SM3 SIMD优化实现 - 使用AVX2指令集
- * 针对多路并行和向量化操作优化
+ * 
+ * 特点：
+ * 1. 4路并行处理，显著提升吞吐量
+ * 2. 向量化布尔函数和置换操作
+ * 3. 优化的消息扩展算法
+ * 4. 针对大数据量批处理优化
  */
+
+// SIMD常量定义
+#define SIMD_LANES 4
+
+// 4路并行SM3上下文
+typedef struct {
+    uint32_t state[SIMD_LANES][SM3_STATE_WORDS];
+    uint8_t buffer[SIMD_LANES][SM3_BLOCK_SIZE];
+    uint64_t bitlen[SIMD_LANES];
+    uint32_t buflen[SIMD_LANES];
+    uint32_t active_lanes;
+} sm3_simd_ctx_t;
 
 /**
  * AVX2版本的32位循环左移
@@ -18,17 +35,49 @@ static inline __m256i avx2_rol32(__m256i x, int n) {
 }
 
 /**
- * AVX2版本的布尔函数FF0 (前16轮)
+ * AVX2版本的布尔函数FF (前16轮和后48轮)
  */
-static inline __m256i avx2_ff0(__m256i x, __m256i y, __m256i z) {
-    return _mm256_xor_si256(_mm256_xor_si256(x, y), z);
+static inline __m256i avx2_ff(__m256i x, __m256i y, __m256i z, int round) {
+    if (round <= 15) {
+        return _mm256_xor_si256(_mm256_xor_si256(x, y), z);
+    } else {
+        __m256i xy = _mm256_and_si256(x, y);
+        __m256i xz = _mm256_and_si256(x, z);
+        __m256i yz = _mm256_and_si256(y, z);
+        return _mm256_or_si256(_mm256_or_si256(xy, xz), yz);
+    }
 }
 
 /**
- * AVX2版本的布尔函数FF1 (后48轮)
+ * AVX2版本的布尔函数GG (前16轮和后48轮)
  */
-static inline __m256i avx2_ff1(__m256i x, __m256i y, __m256i z) {
-    return _mm256_or_si256(_mm256_and_si256(x, y), _mm256_and_si256(_mm256_or_si256(x, y), z));
+static inline __m256i avx2_gg(__m256i x, __m256i y, __m256i z, int round) {
+    if (round <= 15) {
+        return _mm256_xor_si256(_mm256_xor_si256(x, y), z);
+    } else {
+        __m256i xy = _mm256_and_si256(x, y);
+        __m256i not_x = _mm256_xor_si256(x, _mm256_set1_epi32(0xFFFFFFFF));
+        __m256i not_x_z = _mm256_and_si256(not_x, z);
+        return _mm256_or_si256(xy, not_x_z);
+    }
+}
+
+/**
+ * AVX2版本的P0置换
+ */
+static inline __m256i avx2_p0(__m256i x) {
+    __m256i rot9 = avx2_rol32(x, 9);
+    __m256i rot17 = avx2_rol32(x, 17);
+    return _mm256_xor_si256(_mm256_xor_si256(x, rot9), rot17);
+}
+
+/**
+ * AVX2版本的P1置换
+ */
+static inline __m256i avx2_p1(__m256i x) {
+    __m256i rot15 = avx2_rol32(x, 15);
+    __m256i rot23 = avx2_rol32(x, 23);
+    return _mm256_xor_si256(_mm256_xor_si256(x, rot15), rot23);
 }
 
 /**
@@ -43,20 +92,6 @@ static inline __m256i avx2_gg0(__m256i x, __m256i y, __m256i z) {
  */
 static inline __m256i avx2_gg1(__m256i x, __m256i y, __m256i z) {
     return _mm256_or_si256(_mm256_and_si256(x, y), _mm256_and_si256(_mm256_xor_si256(x, _mm256_set1_epi32(-1)), z));
-}
-
-/**
- * AVX2版本的置换函数P0
- */
-static inline __m256i avx2_p0(__m256i x) {
-    return _mm256_xor_si256(_mm256_xor_si256(x, avx2_rol32(x, 9)), avx2_rol32(x, 17));
-}
-
-/**
- * AVX2版本的置换函数P1
- */
-static inline __m256i avx2_p1(__m256i x) {
-    return _mm256_xor_si256(_mm256_xor_si256(x, avx2_rol32(x, 15)), avx2_rol32(x, 23));
 }
 
 /**
