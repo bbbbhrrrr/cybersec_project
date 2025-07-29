@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-07-29T17:09:55.285296",
+  "project": "SM2椭圆曲线密码算法优化",
+  "version": "1.0.0",
+  "description": "完整的SM2实现包含基础算法、性能优化、安全分析和漏洞研究",
+  "components": [
+    "基础SM2椭圆曲线实现",
+    "Montgomery阶梯和窗口NAF优化",
+    "签名安全漏洞分析",
+    "Satoshi Nakamoto签名特征研究",
+    "签名伪造POC验证"
+  ],
+  "performance_features": [
+    "雅可比坐标系优化",
+    "批量模逆元计算",
+    "Shamir双标量乘法",
+    "预计算表缓存"
+  ],
+  "security_features": [
+    "重复随机数攻击检测",
+    "弱随机数分析",
+    "时序攻击模拟",
+    "格攻击评估",
+    "签名模式识别"
+  ]
+}
