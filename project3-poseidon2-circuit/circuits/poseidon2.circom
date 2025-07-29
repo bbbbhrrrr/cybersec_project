@@ -7,14 +7,15 @@ include "./utils/poseidon2_round.circom";
  * Poseidon2 Hash Function Circuit Implementation
  * 
  * Parameters from Table 1 of https://eprint.iacr.org/2023/323.pdf:
- * - Field size (n): 256 bits (BN254 scalar field)
- * - State size (t): 3 
+ * - Field size (n): 256 bits (BN254 scalar field ~254 bits)
+ * - State size (t): 2 or 3 elements
  * - S-box degree (d): 5
- * - Full rounds (RF): 8
- * - Partial rounds (RP): 56
+ * - Round numbers from Table 1:
+ *   - For t=2: RF=8, RP=56, Total=64
+ *   - For t=3: RF=8, RP=57, Total=65
  *
  * This circuit implements the Poseidon2 permutation and hash function
- * optimized for the BN254 curve used in Ethereum.
+ * optimized for the BN254 curve with correct parameters from the paper.
  */
 
 template Poseidon2Permutation(t) {
@@ -23,8 +24,9 @@ template Poseidon2Permutation(t) {
     signal input state[t];
     signal output out[t];
     
-    var RF = t == 2 ? 8 : 8;  // Full rounds  
-    var RP = t == 2 ? 56 : 56; // Partial rounds (from Table 1)
+    // Round parameters from Table 1 of the Poseidon2 paper
+    var RF = 8;  // Full rounds (same for both t=2 and t=3)
+    var RP = t == 2 ? 56 : 57; // Partial rounds from Table 1
     var totalRounds = RF + RP;
     
     component rounds[totalRounds];
@@ -38,6 +40,7 @@ template Poseidon2Permutation(t) {
     
     // Apply rounds
     for (var round = 0; round < totalRounds; round++) {
+        // First RF/2 rounds are full, middle RP rounds are partial, last RF/2 rounds are full
         var isFullRound = (round < RF/2) || (round >= RF/2 + RP);
         
         rounds[round] = Poseidon2Round(t, isFullRound);
@@ -58,6 +61,10 @@ template Poseidon2Permutation(t) {
     }
 }
 
+/*
+ * Poseidon2 Hash Function Template
+ * Implements the sponge construction with rate=t-1, capacity=1
+ */
 template Poseidon2Hash(t) {
     assert(t == 2 || t == 3);
     
@@ -68,25 +75,28 @@ template Poseidon2Hash(t) {
     
     // Initialize state: [0, input1, input2, ...] for t=3
     // or [0, input1] for t=2
-    permutation.state[0] <== 0;  // Capacity element
+    permutation.state[0] <== 0;  // Capacity element (domain separator)
     for (var i = 0; i < t-1; i++) {
         permutation.state[i+1] <== inputs[i];
     }
     
-    // Output first element (rate part)
+    // Output second element (first element of rate part)
+    // This follows standard sponge construction
     out <== permutation.out[1];
 }
 
 /*
  * Main circuit template for zero-knowledge proof
  * Public input: hash value
- * Private input: preimage 
+ * Private input: preimage (2 field elements for t=3)
+ * 
+ * Proves knowledge of preimage without revealing it
  */
 template Poseidon2ZK() {
-    // Private inputs (preimage)
-    signal input preimage[2];  // Using t=3, so 2 field elements as input
+    // Private inputs (preimage) - witness
+    signal private input preimage[2];  // Using t=3, so 2 field elements as input
     
-    // Public inputs (hash value)  
+    // Public inputs (hash value) - statement
     signal input hash;
     
     // Compute hash of preimage
@@ -97,6 +107,9 @@ template Poseidon2ZK() {
     // Constrain computed hash equals public hash
     hash === hasher.out;
 }
+
+// Main component for circuit compilation and proof generation
+component main = Poseidon2ZK();
 
 // Main component
 component main = Poseidon2ZK();
